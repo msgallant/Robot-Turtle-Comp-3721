@@ -37,14 +37,15 @@ public class GameBoardModel
   }
   public static void createCardDeck()
   {
-    Card stepForward = new Card("stepForward", "Blue");
-    Card turnLeft = new Card("turnLeft", "Yellow");
-    Card turnRight = new Card("turnRight", "Purple");
-    card bug = new Card("bug", "Brown");
+    Card stepForward = new Card("Step Forward", "Blue");
+    Card turnLeft = new Card("Turn Left", "Yellow");
+    Card turnRight = new Card("Turn Right", "Purple");
+    card bug = new Card("Bug", "Brown");
     cardDeck[0] = stepForward;
     cardDeck[1] = turnLeft;
     cardDeck[2] = turnRight;
     cardDeck[3] = bug;
   }
+  
 }
 
