@@ -1,7 +1,7 @@
 public class GameBoardModel
 {
   private int numPlayers;
-  private int numCards = 3;
+  private int numCards = 4;
   private String message;
   private ArrayList<RobotTurtle> listOfTurtles = new ArrayList<RobotTurtle>();
   private Card[] cardDeck = new Card[numCards];
@@ -42,9 +42,9 @@ public class GameBoardModel
     Card turnRight = new Card("turnRight", "Purple");
     card bug = new Card("bug", "Brown");
     cardDeck[0] = stepForward;
-    cardDeck[0] = turnLeft;
-    cardDeck[0] = turnRight;
-    cardDeck[0] = bug;
+    cardDeck[1] = turnLeft;
+    cardDeck[2] = turnRight;
+    cardDeck[3] = bug;
   }
 }
 
