@@ -1,5 +1,8 @@
-//Marcia Gallant and Loryn Losier
-
+/*Comp 3721 - Object-Oriented Design and Methodology
+* Milestone 3
+* Due October 27th, 2020
+* Marcia Gallant and Loryn Losier
+*/
 //for direction 1 represents north, 2 represents east, 3 represents south, 4 represents west
 private int yPos, xPos, direction; 
 private String name, colour;
