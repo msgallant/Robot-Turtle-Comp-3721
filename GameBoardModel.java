@@ -4,6 +4,7 @@ public class GameBoardModel
   private int numCards = 4;
   private String message;
   private ArrayList<RobotTurtle> listOfTurtles = new ArrayList<RobotTurtle>();
+  private ArrayList<RobotJewel> listOfJewels = new ArrayList<RobotJewel>();
   private Card[] cardDeck = new Card[numCards];
   public GameBoardModel(int players)
   {
@@ -45,6 +46,32 @@ public class GameBoardModel
     cardDeck[1] = turnLeft;
     cardDeck[2] = turnRight;
     cardDeck[3] = bug;
+  }
+  public static void createRobotJewels()
+  {
+    
+     if (numPlayers >= 1)
+    {
+      //int x, int y, String c
+      RobotJewel r1 = new RobotJewel(5, 4, "Blue");
+      listOfJewels.add(r1);
+    }
+    if (numPlayers >= 2)
+    {
+      RobotJewel r2 = new RobotJewel(4, 5, "Green");
+      listOfJewels.add(r2);
+    }
+    if (numPlayers >= 3)
+    {
+      RobotJewel r3 = new RobotJewel(4, 4, "Purple");
+      listOfJewels.add(r3);
+    }
+    if (numPlayers >= 4)
+    {
+      RobotJewel r4 = new RobotJewel(5, 5, "Red");
+      listOfJewels.add(r4);
+    }
+    
   }
   
 }
