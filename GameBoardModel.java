@@ -53,22 +53,22 @@ public class GameBoardModel
      if (numPlayers >= 1)
     {
       //int x, int y, String c
-      RobotJewel r1 = new RobotJewel(5, 4, "Blue");
+      RobotJewel r1 = new RobotJewel(4, 3, "Blue");
       listOfJewels.add(r1);
     }
     if (numPlayers >= 2)
     {
-      RobotJewel r2 = new RobotJewel(4, 5, "Green");
+      RobotJewel r2 = new RobotJewel(3, 4, "Green");
       listOfJewels.add(r2);
     }
     if (numPlayers >= 3)
     {
-      RobotJewel r3 = new RobotJewel(4, 4, "Purple");
+      RobotJewel r3 = new RobotJewel(3, 3, "Purple");
       listOfJewels.add(r3);
     }
     if (numPlayers >= 4)
     {
-      RobotJewel r4 = new RobotJewel(5, 5, "Red");
+      RobotJewel r4 = new RobotJewel(4, 4, "Red");
       listOfJewels.add(r4);
     }
     
