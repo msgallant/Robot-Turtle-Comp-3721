@@ -1,10 +1,17 @@
-public class StoneWall
+public class StoneWall extends Tile
 {
-  private int xPos, yPos;
-  public StoneWall(int x, int y)
-  {
-    xPos = x;
-    yPos = y;
-  }
-  
+
+	public StoneWall(int x, int y) 
+	{
+		super(x, y);
+		this.setSMovable(false);
+		this.setNMovable(false);
+		this.setWMovable(false);
+		this.setEMovable(false);
+		
+		this.setTileType("Stone Wall");
+	}
+	
+	
+	
 }
