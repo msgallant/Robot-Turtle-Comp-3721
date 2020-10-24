@@ -22,7 +22,7 @@ public class Tile
 		//movable = true; //can this tile be moved on to by a turtle?
 		
 		
-		occupied = false; // Is a turtle on this Tile?
+		occupied = false; // Is a turtle or  jewel on this Tile?
 		
 	}
 	public void setNTile(Tile n)
