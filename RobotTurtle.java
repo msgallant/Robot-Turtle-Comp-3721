@@ -8,7 +8,6 @@ public class RobotTurtle
 {
   private int yPos, xPos, direction; 
   private String name, colour;
-  private boolean north, east, south, west;
 
   public RobotTurtle(int x, int y, int d, String n, String c)
   {
@@ -20,36 +19,5 @@ public class RobotTurtle
     
   
   }
- /* public setMovableNorth(boolean m)
-  {
-    north = m;
-  }
-  public setMovableEast(boolean m)
-  {
-    east = m;
-  }
-  public setMovableSouth(boolean m)
-  {
-    south = m;
-  }
-  public setMovableWest(boolean m)
-  {
-    west = m;
-  }
-  public getMovableNorth()
-  {
-    return north; 
-  }
-  public getMovableEast()
-  {
-    return east; 
-  }
-  public getMovableSouth()
-  {
-    return south;
-  }
-  public getMovableWest()
-  {
-    return west;
-  }*/
+
 }
