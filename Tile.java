@@ -2,7 +2,7 @@ public class Tile
 {
 	private int xPos, yPos;
 	private Tile nTile, eTile, wTile, sTile;
-	private String tileType = "normal";
+	private String tileType = "Normal";
 	private boolean nMovable, eMovable, wMovable, sMovable;
 	private boolean occupied; //movable;
 	public Tile(int x, int y)
@@ -22,8 +22,31 @@ public class Tile
 		//movable = true; //can this tile be moved on to by a turtle?
 		
 		
-		occupied = false; // Is a turtle or  jewel on this Tile?
+		occupied = false; // Is a turtle on this Tile?
 		
+		
+		
+	}
+	public void findDirectionsWithNoNeighbours()
+	{
+		
+		if (wTile == null)
+		{
+			wMovable = false; // no west neighbours
+		}
+		if (eTile == null)
+		{
+			
+			eMovable = false; // no east neighbours
+		}
+		if (nTile == null)
+		{
+			nMovable = false; // no north neighbours
+		}
+		if (sTile == null)
+		{
+			sMovable = false; // no south neighbours
+		}
 	}
 	public void setNTile(Tile n)
 	{
@@ -63,9 +86,12 @@ public class Tile
 		sMovable = b;
 	}
 	
-	public void setPosition(int x, int y)
+	public void setXPos(int x)
 	{
 		xPos = x;
+	}
+	public void setYPos(int y)
+	{
 		yPos = y;
 	}
 	
@@ -77,12 +103,13 @@ public class Tile
 	{
 		tileType = t;
 	}
-	public int[] getPosition()
+	public int getXPos()
 	{
-		int[] position = new int[2];
-		position[0] = xPos;
-		position[1] = yPos;
-		return position;
+		return xPos;
+	}
+	public int getYPos()
+	{
+		return yPos;
 	}
 	public boolean getOccupied()
 	{
@@ -131,5 +158,6 @@ public class Tile
 	{
 		return sMovable;
 	}
+	
 }
 
