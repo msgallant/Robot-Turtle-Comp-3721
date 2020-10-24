@@ -1,4 +1,3 @@
-
 public class Card
 {
   private String cardType, cardColour;
@@ -6,5 +5,13 @@ public class Card
   {
     cardType = type;
     cardColour = colour;
+  }
+  public String getCardType()
+  {
+	  return cardType;
+  }
+  public String getCardColour()
+  {
+	  return cardColour;
   }
 }
