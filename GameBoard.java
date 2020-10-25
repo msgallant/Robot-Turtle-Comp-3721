@@ -31,7 +31,6 @@ public class GameBoard
 	}
 	public Tile[][] addRobotTurtle(int[] pos)
 	{
-		
 		tileList[pos[0]][pos[1]].setOccupied(true);
 		return tileList;
 	}
