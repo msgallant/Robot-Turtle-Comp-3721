@@ -156,7 +156,7 @@ public class GameBoardModel
 	  
 	  
   }
-	public static void addStoneWall(int x, int y)
+  public static void addStoneWall(int x, int y)
   {
 	  gameBoard.addStoneWall(x, y);
   }
