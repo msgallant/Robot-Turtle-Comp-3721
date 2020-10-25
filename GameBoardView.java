@@ -9,11 +9,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class DisplayGameBoard extends JFrame
+public class GameBoardView extends JFrame
 {
 	JButton T[][] = new JButton[8][8];
 
-	public DisplayGameBoard(String title)
+	public GameBoardView(String title)
 	{
 
 		super (title);
@@ -45,7 +45,7 @@ public class DisplayGameBoard extends JFrame
 
 	public static void main(String[] args)
 	{
-		DisplayGameBoard rt = new DisplayGameBoard("Robot Turtles");
+		GameBoardView rt = new GameBoardView("Robot Turtles");
 		rt.setVisible(true);
 		rt.setSize(600, 600); 
 
