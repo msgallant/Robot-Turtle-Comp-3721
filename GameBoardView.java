@@ -1,22 +1,31 @@
-
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
+@SuppressWarnings("serial")
 public class GameBoardView extends JFrame
 {
+	ArrayList<JButton> butList = new ArrayList<JButton>();
+	ArrayList<JButton> cardList = new ArrayList<JButton>();
+	int m;
 	JButton T[][] = new JButton[8][8];
+	ArrayList<JButton> tileList = new ArrayList<JButton>();
 
 	public GameBoardView(String title)
 	{
-
 		super (title);
+		setSize(600,600);
 		setLayout(new GridLayout(8, 8, 1 ,1));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);  
 		int a=1;
@@ -26,29 +35,16 @@ public class GameBoardView extends JFrame
 			{	
 				T[i][j] = new JButton();
 				T[i][j].setIcon(new ImageIcon("src/Images/GameBoard"+ a +".jpg"));
+				tileList.add(T[i][j]);
 				a++;
 				add(T[i][j]);
 			}
 		}
-		//T[5][4].setIcon(new ImageIcon("src/Images/crate.jpg"));
-		//T[4][7].setIcon(new ImageIcon("src/Images/stoneWall.jpg"));
-		//T[3][3].setIcon(new ImageIcon("src/Images/jewel1.jpg"));
-		//T[3][4].setIcon(new ImageIcon("src/Images/jewel2.jpg"));
-		//T[4][3].setIcon(new ImageIcon("src/Images/jewel3.jpg"));
-		//T[4][4].setIcon(new ImageIcon("src/Images/jewel4.jpg"));
-		//T[0][0].setIcon(new ImageIcon("src/Images/robotTurtle1.3.jpg"));
-		//T[0][7].setIcon(new ImageIcon("src/Images/robotTurtle2.4.jpg"));
-		//T[7][0].setIcon(new ImageIcon("src/Images/robotTurtle3.2.jpg"));
-		//T[7][7].setIcon(new ImageIcon("src/Images/robotTurtle4.1.jpg"));
-
+		setVisible(true);
 	}
 
-	public static void main(String[] args)
+	public void numPlayers()
 	{
-		GameBoardView rt = new GameBoardView("Robot Turtles");
-		rt.setVisible(true);
-		rt.setSize(600, 600); 
-
 		JFrame frame = new JFrame("Robot Turtles");
 		JPanel panel = new JPanel();
 		JPanel panel1 = new JPanel();  
@@ -62,6 +58,7 @@ public class GameBoardView extends JFrame
 		for (int i=1; i<5; i++)
 		{
 			JButton b = new JButton();
+			butList.add(b);
 			b.setIcon(new ImageIcon("src/Images/" + i + "Player.jpg"));
 			b.setHorizontalTextPosition(SwingConstants.CENTER);
 			b.setVerticalTextPosition(SwingConstants.BOTTOM);
@@ -77,4 +74,198 @@ public class GameBoardView extends JFrame
 		frame.setVisible(true); 
 	}
 
+	public ArrayList<JButton> getButtonList()
+	{
+		return butList;
+	}
+
+	public ArrayList<JButton> getTileList()
+	{
+		return tileList;
+	}
+
+
+	public int pickACard()
+	{
+		JFrame frame = new JFrame("Robot Turtles");
+		JPanel panel = new JPanel();
+		JPanel panel1 = new JPanel();  
+		panel1.setLayout(new BorderLayout());  
+		JLabel label = new JLabel("What would You like to do?");  
+		label.setVerticalTextPosition(SwingConstants.NORTH);
+		panel1.add(label);
+
+		JPanel panel2 = new JPanel();
+
+
+		JButton left = new JButton();
+		left.setIcon(new ImageIcon("src/Images/Card.0.jpg"));
+		left.setHorizontalTextPosition(SwingConstants.CENTER);
+		left.setVerticalTextPosition(SwingConstants.BOTTOM);
+		left.setText("Turn Left");
+		panel2.add(left);
+
+		JButton forw = new JButton();
+		forw.setIcon(new ImageIcon("src/Images/Card.1.jpg"));
+		forw.setHorizontalTextPosition(SwingConstants.CENTER);
+		forw.setVerticalTextPosition(SwingConstants.BOTTOM);
+		forw.setText("Move Forward");
+		panel2.add(forw);
+
+		JButton right = new JButton();
+		right.setIcon(new ImageIcon("src/Images/Card.2.jpg"));
+		right.setHorizontalTextPosition(SwingConstants.CENTER);
+		right.setVerticalTextPosition(SwingConstants.BOTTOM);
+		right.setText("Turn Right");
+		panel2.add(right);
+
+		panel.add(panel1);  
+		panel.add(panel2);
+		frame.add(panel);  
+		frame.setSize(660, 360);  
+		frame.setLocationRelativeTo(null);  
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
+		frame.setVisible(true); 
+
+		left.addMouseListener(new MouseAdapter()
+		{
+			public void mouseClicked(MouseEvent arg0) 
+			{
+				m=0;
+			}
+		});	
+		forw.addMouseListener(new MouseAdapter()
+		{
+			public void mouseClicked(MouseEvent arg0) 
+			{
+				m=1;
+			}
+		});	
+		right.addMouseListener(new MouseAdapter()
+		{
+			public void mouseClicked(MouseEvent arg0) 
+			{
+				m=2;
+			}
+		});
+		return m;
+	}
+
+	public void validate()
+	{
+		JFrame frame = new JFrame("Robot Turtles");
+		JPanel panel = new JPanel();
+		JPanel panel1 = new JPanel();  
+		panel1.setLayout(new BorderLayout());  
+		JLabel label = new JLabel("Are you sure that you want to do this?");  
+		label.setVerticalTextPosition(SwingConstants.NORTH);
+		panel1.add(label);
+		panel.add(panel1); 
+
+		JPanel panel2 = new JPanel();
+
+		JButton move = new JButton();
+		move.setIcon(new ImageIcon("src/Images/Card."+ m +".jpg"));
+		move.setHorizontalTextPosition(SwingConstants.CENTER);
+		move.setVerticalTextPosition(SwingConstants.BOTTOM);
+		move.setText("Confirm Move?");
+		panel2.add(move);
+
+		JButton bug = new JButton();
+		bug.setIcon(new ImageIcon("src/Images/Card.3.jpg"));
+		bug.setHorizontalTextPosition(SwingConstants.CENTER);
+		bug.setVerticalTextPosition(SwingConstants.BOTTOM);
+		bug.setText("BUG!!!");
+		panel2.add(bug);
+
+		panel.add(panel2);
+		frame.add(panel);  
+		frame.setSize(660, 360);  
+		frame.setLocationRelativeTo(null);  
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
+		frame.setVisible(true); 
+
+		move.addMouseListener(new MouseAdapter()
+		{
+			public void mouseClicked(MouseEvent arg0) 
+			{
+
+			}
+		});	
+		bug.addMouseListener(new MouseAdapter()
+		{
+			public void mouseClicked(MouseEvent arg0) 
+			{
+				m=3;
+			}
+		});	
+	}
+
+
+	public void addObsticles() 
+	{
+		JFrame frame = new JFrame("Robot Turtles");
+		JPanel panel = new JPanel();  
+		JTextArea textArea = new JTextArea();
+		textArea.setEditable(false);
+		textArea.setBackground(null);
+		textArea.setText("Select up to 20 tiles to be replaced with stone walls.\n"
+				+ "And up to 8 to be replaced with crates.\n"
+				+ "***Please be aware that the following tiles are invalid selections: \n"
+				+ "{(0,0),(0,7),(7,0),(7,7),(3,4),(3,3),(4,3),(4,4)}");
+		textArea.setCaretPosition(SwingConstants.NORTH);
+		panel.add(textArea);
+		JButton ok = new JButton();
+		ok.setText("OK");
+		panel.add(ok);
+		frame.add(panel);  
+		frame.setSize(500, 120);  
+		frame.setLocationRelativeTo(null);  
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
+		frame.setVisible(true); 
+		ok.addMouseListener(new MouseAdapter()
+		{
+			public void mouseClicked(MouseEvent arg0) 
+			{
+				frame.dispose();
+			}
+		});
+	}
+
+	public void addStoneWalls(int t, int x, int y)
+	{
+		T[x][y].setIcon(new ImageIcon("src/Images/stoneWall.jpg")); 
+	}
+
+	public void addCrate(int x, int y)
+	{
+		T[x][y].setIcon(new ImageIcon("src/Images/crate.jpg"));
+	}
+
+	public void invalidSelection() 
+	{
+		JFrame frame = new JFrame("Robot Turtles ***ERROR***");
+		JPanel panel = new JPanel();  
+		JTextArea textArea = new JTextArea();
+		textArea.setEditable(false);
+		textArea.setBackground(null);
+		textArea.setText("Invalid tile.\n" 
+				+ "***Please be aware that the following tiles are invalid selections:\n"
+				+ "{(0,0),(0,7),(7,0),(7,7),(3,4),(3,3),(4,3),(4,4)}");
+		textArea.setCaretPosition(SwingConstants.NORTH);
+		panel.add(textArea);		
+		frame.add(panel);  
+		frame.setSize(500, 100);  
+		frame.setLocationRelativeTo(null);  
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
+		frame.setVisible(true); 
+	}
+
+	public void turtleMove(int olddir, int newdir, int oldx, int oldy, int newx, int newy)
+	{
+		if(olddir==newdir)
+		{
+			
+		}
+	}
 }
