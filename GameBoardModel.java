@@ -156,6 +156,14 @@ public class GameBoardModel
 	  
 	  
   }
+	public static void addStoneWall(int x, int y)
+  {
+	  gameBoard.addStoneWall(x, y);
+  }
+  public static void addCrate(int x, int y)
+  {
+	  gameBoard.addCrate(x, y);
+  }
   public ArrayList<RobotTurtle> getListOfRobotTurtles()
   {
 	  return listOfTurtles;
