@@ -361,5 +361,8 @@ public class GameBoardModel
   {
 	  return currentPlayer;
   }
- 
+ public Tile[][] getTileList()
+ {
+	 return gameBoard.getTileList();
+ }
 
