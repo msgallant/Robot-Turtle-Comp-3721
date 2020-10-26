@@ -29,9 +29,10 @@ public class GameBoard
 		tileList[pos[0]][pos[1]] = r;
 		return tileList;
 	}
-	public Tile[][] addRobotTurtle(int[] pos)
+	public Tile[][] addRobotTurtle(int[] pos, RobotTurtle rt)
 	{
 		tileList[pos[0]][pos[1]].setOccupied(true);
+		tileList[pos[0]][pos[1]].setRobotTurtle(rt);
 		return tileList;
 	}
 	public Tile[][] createEmptyGameBoard()
