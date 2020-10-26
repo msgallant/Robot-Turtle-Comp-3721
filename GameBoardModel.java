@@ -53,13 +53,12 @@ public class GameBoardModel
   }
   public void setPlayers()
   {
-	  System.out.println(playersPlaying[0] + " " + playersPlaying[1] + playersPlaying[2] + playersPlaying[3]);
-	  for (int i =0; i < numPlayers; i++)
-	  {
-		  playersPlaying[i] = true;
+	for (int i =0; i < numPlayers; i++)
+	{
+		playersPlaying[i] = true;
 		 
-	  }
-	  System.out.println(playersPlaying[0] + " " + playersPlaying[1] + playersPlaying[2] + playersPlaying[3]);
+	}
+
   }
   public static void createRobotTurtles()
   { 
@@ -69,28 +68,28 @@ public class GameBoardModel
       //int x, int y, int d, String n, String c
       RobotTurtle t = new RobotTurtle(TURTLE_ONE_POSITION[0],TURTLE_ONE_POSITION[1],TURTLE_ONE_POSITION[2],TURTLE_ONE_NAME, TURTLE_ONE_COLOUR);
       listOfTurtles.add(t);
-      gameBoard.addRobotTurtle(TURTLE_ONE_POSITION);
+      gameBoard.addRobotTurtle(TURTLE_ONE_POSITION, t);
     }
     
     if (numPlayers >= 2)
     {
     	RobotTurtle t = new RobotTurtle(TURTLE_TWO_POSITION[0],TURTLE_TWO_POSITION[1],TURTLE_TWO_POSITION[2],TURTLE_TWO_NAME, TURTLE_TWO_COLOUR);
     	listOfTurtles.add(t);
-        gameBoard.addRobotTurtle(TURTLE_TWO_POSITION);
+        gameBoard.addRobotTurtle(TURTLE_TWO_POSITION, t);
     }
     
     if (numPlayers >= 3)
     {
     	RobotTurtle t = new RobotTurtle(TURTLE_THREE_POSITION[0],TURTLE_THREE_POSITION[1],TURTLE_THREE_POSITION[2],TURTLE_THREE_NAME, TURTLE_THREE_COLOUR);
     	listOfTurtles.add(t);
-        gameBoard.addRobotTurtle(TURTLE_THREE_POSITION);
+        gameBoard.addRobotTurtle(TURTLE_THREE_POSITION, t);
     }
     
     if (numPlayers >= 4)
     {
     	RobotTurtle t = new RobotTurtle(TURTLE_FOUR_POSITION[0],TURTLE_FOUR_POSITION[1],TURTLE_FOUR_POSITION[2],TURTLE_FOUR_NAME, TURTLE_FOUR_COLOUR);
     	listOfTurtles.add(t);
-        gameBoard.addRobotTurtle(TURTLE_FOUR_POSITION);
+        gameBoard.addRobotTurtle(TURTLE_FOUR_POSITION, t);
     }
 
     
