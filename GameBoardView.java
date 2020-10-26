@@ -230,15 +230,6 @@ public class GameBoardView extends JFrame
 		});
 	}
 
-	public void addStoneWalls(int t, int x, int y)
-	{
-		T[x][y].setIcon(new ImageIcon("src/Images/stoneWall.jpg")); 
-	}
-
-	public void addCrate(int x, int y)
-	{
-		T[x][y].setIcon(new ImageIcon("src/Images/crate.jpg"));
-	}
 
 	public void invalidSelection() 
 	{
