@@ -67,7 +67,7 @@ public class GameBoardModel
 	  createRobotTurtles();
 	  createRobotJewels();
 	  createCardDeck();
-	  System.out.println(getListOfRobotTurtles().size());
+	  //System.out.println(getListOfRobotTurtles().size());
 	  
   }
   public static void createRobotTurtles()
@@ -101,8 +101,8 @@ public class GameBoardModel
     	listOfTurtles.add(t);
         gameBoard.addRobotTurtle(TURTLE_FOUR_POSITION, t);
     }
-    System.out.println(listOfTurtles.size());
-    
+    //System.out.println(listOfTurtles.size());
+    return;
 
   }
   public static void switchPlayer()
@@ -377,4 +377,3 @@ public class GameBoardModel
  }
   
 }
-
