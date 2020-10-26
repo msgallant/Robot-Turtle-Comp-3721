@@ -109,6 +109,10 @@ public class GameBoardController
 								mouseClickCrate++;
 							}
 						}
+						else
+						{
+							view.invalidSelection();
+						}
 					}
 				}
 			});
