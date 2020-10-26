@@ -19,6 +19,7 @@ public class GameBoardController
 {
 	private GameBoardModel model;
 	private GameBoardView view;
+	private Scanner in;
 	private ArrayList<JButton> buttonList;
 	private ArrayList<JButton> tileList;
 	private int numberPlayers;
@@ -32,16 +33,16 @@ public class GameBoardController
 
 	public GameBoardController()
 	{
-		model = new GameBoardModel();
+		in = new Scanner(System.in);
+		//model = new GameBoardModel(numberPlayers);
 		view = new GameBoardView("Robot Turtles");
 
 	}
 
 	/**
 	 * Prompting the beginning of the game, number of players.
-	 * @return 
 	 */
-	public int initGame()
+	public void initGame()
 	{
 		view.numPlayers();
 		buttonList=view.getButtonList();
@@ -51,6 +52,8 @@ public class GameBoardController
 			public void mouseClicked(MouseEvent arg0) 
 			{
 				numberPlayers = 1;
+				model = new GameBoardModel(numberPlayers);
+				view.displayBoard(model.getTileList());
 			}
 		});
 		twoP = buttonList.get(1);
@@ -59,6 +62,8 @@ public class GameBoardController
 			public void mouseClicked(MouseEvent arg0) 
 			{
 				numberPlayers = 2;
+				model = new GameBoardModel(numberPlayers);
+				view.displayBoard(model.getTileList());
 			}
 		});
 		threeP = buttonList.get(2);
@@ -67,6 +72,8 @@ public class GameBoardController
 			public void mouseClicked(MouseEvent arg0) 
 			{
 				numberPlayers = 3;
+				model = new GameBoardModel(numberPlayers);
+				view.displayBoard(model.getTileList());
 			}
 		});
 		fourP = buttonList.get(3);
@@ -75,9 +82,14 @@ public class GameBoardController
 			public void mouseClicked(MouseEvent arg0) 
 			{
 				numberPlayers = 4;
+				model = new GameBoardModel(numberPlayers);
+				view.displayBoard(model.getTileList());
 			}
 		});	
-		return numberPlayers;
+		in.nextInt();
+		//model = new GameBoardModel(numberPlayers);
+		//view.displayBoard(model.getTileList());
+		
 	}
 
 	private void setUpGame() 
@@ -86,7 +98,7 @@ public class GameBoardController
 		tileList=view.getTileList();
 		// tiles {T1(0,0), T8(0,7), T57(7,0), T64(7,7), T29(3,4), T28(3,3), T36(4,3), T37(4,4)} are invalid.
 		int[] invalidArr = {0,7,27,28,35,36,56,63};
-
+		//in.nextInt();
 		for(int i=0; i<64; i++)
 		{
 			tileNumber=i;
@@ -133,7 +145,8 @@ public class GameBoardController
 				view.pickACard();
 				view.validate(m);
 			}
-			model.moveTurtle(model.getListOfRobotTurtles.get(0), c[m]);
+			in.nextInt();
+			model.moveTurtle(model.getListOfRobotTurtles().get(0), c[m]);
 		}
 		
 		if(currentPlayer == Player.PLAYER_TWO)
@@ -145,7 +158,8 @@ public class GameBoardController
 				view.pickACard();
 				view.validate(m);
 			}
-			model.moveTurtle(model.getListOfRobotTurtles.get(1), c[m]);
+			in.nextInt();
+			model.moveTurtle(model.getListOfRobotTurtles().get(1), c[m]);
 		}
 		if(currentPlayer == Player.PLAYER_THREE)
 		{
@@ -156,7 +170,8 @@ public class GameBoardController
 				view.pickACard();
 				view.validate(m);
 			}
-			model.moveTurtle(model.getListOfRobotTurtles.get(2), c[m]);
+			in.nextInt();
+			model.moveTurtle(model.getListOfRobotTurtles().get(2), c[m]);
 		}
 		if(currentPlayer == Player.PLAYER_FOUR)
 		{
@@ -167,23 +182,24 @@ public class GameBoardController
 				view.pickACard();
 				view.validate(m);
 			}
-			model.moveTurtle(model.getListOfRobotTurtles.get(3), c[m]);
+			in.nextInt();
+			model.moveTurtle(model.getListOfRobotTurtles().get(3), c[m]);
 		}
 	}
 
 
 	public void playGame()
 	{
+		initGame();
+		setUpGame();
 		State currentState = model.getCurrentState();
 		do 
-		{
-			initGame();
-			setUpGame();
+		{		
 			promptMove();
 			currentState = model.getCurrentState();
 			view.displayBoard(model.getTileList());
 		}
-		while(currentState != State.ALL_PLAYER_FIN);
+		while(currentState != State.ALL_PLAYERS_FIN);
 
 	}
 
@@ -194,6 +210,7 @@ public class GameBoardController
 		RT.playGame();
 	}
 }
+
 
 
 
