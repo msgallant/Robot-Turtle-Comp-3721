@@ -149,7 +149,7 @@ public class GameBoardView extends JFrame
 		return m;
 	}
 
-	public void validate()
+	public int validate(int n)
 	{
 		JFrame frame = new JFrame("Robot Turtles");
 		JPanel panel = new JPanel();
@@ -163,7 +163,7 @@ public class GameBoardView extends JFrame
 		JPanel panel2 = new JPanel();
 
 		JButton move = new JButton();
-		move.setIcon(new ImageIcon("src/Images/Card."+ m +".jpg"));
+		move.setIcon(new ImageIcon("src/Images/Card."+ n +".jpg"));
 		move.setHorizontalTextPosition(SwingConstants.CENTER);
 		move.setVerticalTextPosition(SwingConstants.BOTTOM);
 		move.setText("Confirm Move?");
@@ -187,7 +187,7 @@ public class GameBoardView extends JFrame
 		{
 			public void mouseClicked(MouseEvent arg0) 
 			{
-
+				
 			}
 		});	
 		bug.addMouseListener(new MouseAdapter()
@@ -197,6 +197,7 @@ public class GameBoardView extends JFrame
 				m=3;
 			}
 		});	
+		return m;
 	}
 
 
