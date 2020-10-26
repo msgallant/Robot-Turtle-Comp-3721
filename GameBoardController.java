@@ -18,7 +18,6 @@ import javax.swing.SwingConstants;
 
 public class GameBoardController
 {
-	private Scanner in;
 	private GameBoardModel model;
 	private GameBoardView view;
 	private ArrayList<JButton> buttonList;
@@ -37,7 +36,6 @@ public class GameBoardController
 
 	public GameBoardController()
 	{
-		in = new Scanner(System.in);
 		model = new GameBoardModel();
 		view = new GameBoardView("Robot Turtles");
 
@@ -45,8 +43,9 @@ public class GameBoardController
 
 	/**
 	 * Prompting the beginning of the game, number of players.
+	 * @return 
 	 */
-	public void initGame()
+	public int initGame()
 	{
 		view.numPlayers();
 		buttonList=view.getButtonList();
@@ -82,6 +81,7 @@ public class GameBoardController
 				numberPlayers = 4;
 			}
 		});	
+		return numberPlayers;
 	}
 
 	private void setUpGame() 
@@ -97,36 +97,40 @@ public class GameBoardController
 				view.invalidSelection();
 			}
 		});
+		
 		T2 = tileList.get(1);
 		T2.addMouseListener(new MouseAdapter()
 		{
 			public void mouseClicked(MouseEvent arg0) 
 			{
-				view.addStoneWalls(((tileList.indexOf(T2))+1) ,T2.getX(),T2.getY());
+				model.addStoneWalls(T2.getX(),T2.getY());
 			}
 		});
+		
 		T3 = tileList.get(2);
 		T3.addMouseListener(new MouseAdapter()
 		{
 			public void mouseClicked(MouseEvent arg0) 
 			{
-				view.addStoneWalls((tileList.indexOf(T3))+1),T3.getX(),T3.getY());
+				model.addStoneWalls(T3.getX(),T3.getY());
 			}
 		});
+		
 		T4 = tileList.get(3);
 		T4.addMouseListener(new MouseAdapter()
 		{
 			public void mouseClicked(MouseEvent arg0) 
 			{
-				view.addStoneWalls((tileList.indexOf(T4))+1)T4.getX(),T4.getY());
+				model.addStoneWalls(T4.getX(),T4.getY());
 			}
 		});
+		
 		T5 = tileList.get(4);
 		T5.addMouseListener(new MouseAdapter()
 		{
 			public void mouseClicked(MouseEvent arg0) 
 			{
-				view.addStoneWalls((tileList.indexOf(T5))+1)T5.getX(),T5.getY());
+				model.addStoneWalls(T5.getX(),T5.getY());
 			}
 		});
 	}
@@ -149,7 +153,7 @@ public class GameBoardController
 	}
 
 
-	public void playGame();
+	public void playGame()
 	{
 		State currentState = model.getCurrentState();
 		do 
@@ -158,7 +162,7 @@ public class GameBoardController
 			setUpGame();
 			promptMove();
 			currentState = model.getCurrentState();
-			view.GameBoardView(model.getBoard());
+			view.displayBoard(model.getTileList());
 		}
 		while(currentState != State.ALL_PLAYER_FIN);
 
@@ -171,7 +175,6 @@ public class GameBoardController
 		RT.playGame();
 	}
 }
-
 
 
 
