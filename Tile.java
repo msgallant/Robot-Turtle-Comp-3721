@@ -5,6 +5,7 @@ public class Tile
 	private String tileType = "Normal";
 	private boolean nMovable, eMovable, wMovable, sMovable;
 	private boolean occupied; //movable;
+	private String colour = "White";
 	private RobotTurtle rt;
 	public Tile(int x, int y)
 	{
@@ -130,6 +131,10 @@ public class Tile
 	public String getTileType()
 	{
 		return tileType;
+	}
+	public String getColour()
+	{
+		return colour;
 	}
 	
 	
