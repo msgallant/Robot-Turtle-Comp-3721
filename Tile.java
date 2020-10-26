@@ -5,6 +5,7 @@ public class Tile
 	private String tileType = "Normal";
 	private boolean nMovable, eMovable, wMovable, sMovable;
 	private boolean occupied; //movable;
+	private RobotTurtle rt;
 	public Tile(int x, int y)
 	{
 		xPos = x;
@@ -94,7 +95,10 @@ public class Tile
 	{
 		yPos = y;
 	}
-	
+	public void setRobotTurtle(RobotTurtle r)
+	{
+		rt = r;
+	}
 	public void setOccupied(boolean o)
 	{
 		occupied = o;
@@ -110,6 +114,10 @@ public class Tile
 	public int getYPos()
 	{
 		return yPos;
+	}
+	public RobotTurtle getRobotTurtle()
+	{
+		return rt;
 	}
 	public boolean getOccupied()
 	{
