@@ -5,7 +5,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -23,15 +22,12 @@ public class GameBoardController
 	private ArrayList<JButton> buttonList;
 	private ArrayList<JButton> tileList;
 	private int numberPlayers;
-	private int move;
+	private int mouseClickWall=0;
+	private int mouseClickCrate=0;
+	private int tileNumber;
+	private int m;
 	private JButton oneP, twoP, threeP, fourP;
-	private JButton T1, T2, T3, T4, T5, T6, T7,T8,T9,T10,
-					T11,T12,T13,T14,T15,T16,T17,T18,T19,T20,
-					T21,T22,T23,T24,T25,T26,T27,T28,T29,T30,
-					T31,T32,T33,T34,T35,T36,T37,T38,T39,T40,
-					T41,T42,T43,T44,T45,T46,T47,T48,T49,T50,
-					T51,T52,T53,T54,T55,T56,T57,T58,T59,T60,
-					T61,T62,T63,T64;
+
 
 
 	public GameBoardController()
@@ -89,67 +85,86 @@ public class GameBoardController
 		view.addObsticles();
 		tileList=view.getTileList();
 		// tiles {T1(0,0), T8(0,7), T57(7,0), T64(7,7), T29(3,4), T28(3,3), T36(4,3), T37(4,4)} are invalid.
-		T1 = tileList.get(0);
-		T1.addMouseListener(new MouseAdapter()
+		int[] invalidArr = {0,7,27,28,35,36,56,63};
+
+		for(int i=0; i<64; i++)
 		{
-			public void mouseClicked(MouseEvent arg0) 
+			tileNumber=i;
+			tileList.get(i).addMouseListener(new MouseAdapter()
 			{
-				view.invalidSelection();
-			}
-		});
-		
-		T2 = tileList.get(1);
-		T2.addMouseListener(new MouseAdapter()
-		{
-			public void mouseClicked(MouseEvent arg0) 
-			{
-				model.addStoneWalls(T2.getX(),T2.getY());
-			}
-		});
-		
-		T3 = tileList.get(2);
-		T3.addMouseListener(new MouseAdapter()
-		{
-			public void mouseClicked(MouseEvent arg0) 
-			{
-				model.addStoneWalls(T3.getX(),T3.getY());
-			}
-		});
-		
-		T4 = tileList.get(3);
-		T4.addMouseListener(new MouseAdapter()
-		{
-			public void mouseClicked(MouseEvent arg0) 
-			{
-				model.addStoneWalls(T4.getX(),T4.getY());
-			}
-		});
-		
-		T5 = tileList.get(4);
-		T5.addMouseListener(new MouseAdapter()
-		{
-			public void mouseClicked(MouseEvent arg0) 
-			{
-				model.addStoneWalls(T5.getX(),T5.getY());
-			}
-		});
+				public void mouseClicked(MouseEvent arg0) 
+				{
+					for(int j=0; j<invalidArr.length; j++)
+					{
+						if( tileNumber != invalidArr[j] )
+						{
+							if(mouseClickWall<19)
+							{
+								model.addStoneWall((tileList.get(tileNumber)).getX(), (tileList.get(tileNumber)).getY());
+								mouseClickWall++;
+							}
+							else if(mouseClickCrate<7)
+							{
+								model.addCrate((tileList.get(tileNumber)).getX(), (tileList.get(tileNumber)).getY());
+								mouseClickCrate++;
+							}
+						}
+					}
+				}
+			});
+		}
+		view.displayBoard(model.getTileList());
 	}
 
 	public void promptMove()
 	{
 		Player currentPlayer = model.getCurrentPlayer();
-		if(currentPlayer !=Player.NULL)
+		Card[] c = model.getDeckOfCards();
+		if(currentPlayer == Player.PLAYER_ONE)
 		{
 			view.pickACard();
-			view.validate();
-			if(view.m == 3)
+			view.validate(m);
+			while(view.m == 3)
 			{
 				view.pickACard();
-				view.validate();
+				view.validate(m);
 			}
-			move = view.m;
+			model.moveTurtle(model.getListOfRobotTurtles.get(0), c[m]);
 		}
 		
+		if(currentPlayer == Player.PLAYER_TWO)
+		{
+			view.pickACard();
+			view.validate(m);
+			while(view.m == 3)
+			{
+				view.pickACard();
+				view.validate(m);
+			}
+			model.moveTurtle(model.getListOfRobotTurtles.get(1), c[m]);
+		}
+		if(currentPlayer == Player.PLAYER_THREE)
+		{
+			view.pickACard();
+			view.validate(m);
+			while(view.m == 3)
+			{
+				view.pickACard();
+				view.validate(m);
+			}
+			model.moveTurtle(model.getListOfRobotTurtles.get(2), c[m]);
+		}
+		if(currentPlayer == Player.PLAYER_FOUR)
+		{
+			view.pickACard();
+			view.validate(m);
+			while(view.m == 3)
+			{
+				view.pickACard();
+				view.validate(m);
+			}
+			model.moveTurtle(model.getListOfRobotTurtles.get(3), c[m]);
+		}
 	}
 
 
