@@ -1,5 +1,6 @@
 import java.util.ArrayList;
-
+//Marcia Gallant, this initializes the game, puts jewels and turtles on it itself, asks foruser to put stone walls and crates, keeps track of whose 
+//turn and keeps track of who finishes the game and when the game is completely finished.
 public class GameBoardModel
 {
   private static int numPlayers = 1; //default
@@ -48,17 +49,26 @@ public class GameBoardModel
     numPlayers = players;
     currentState = currentState.PLAYING;
     currentPlayer = currentPlayer.PLAYER_ONE;
-    setPlayers(); //initializing all players
+    initPlayers(); //initializing all players
+    initGame(); //initializing board game
     
   }
-  public void setPlayers()
+  public void initPlayers()
   {
-	for (int i =0; i < numPlayers; i++)
-	{
-		playersPlaying[i] = true;
+	  for (int i =0; i < numPlayers; i++)
+	  {
+		  playersPlaying[i] = true;
 		 
-	}
+	  }
 
+  }
+  public void initGame()
+  {
+	  createRobotTurtles();
+	  createRobotJewels();
+	  createCardDeck();
+	  System.out.println(getListOfRobotTurtles().size());
+	  
   }
   public static void createRobotTurtles()
   { 
@@ -91,7 +101,7 @@ public class GameBoardModel
     	listOfTurtles.add(t);
         gameBoard.addRobotTurtle(TURTLE_FOUR_POSITION, t);
     }
-
+    System.out.println(listOfTurtles.size());
     
 
   }
@@ -213,7 +223,6 @@ public class GameBoardModel
     }
     if (numPlayers >= 2)
     {
-    	System.out.println("HI" + " " + numPlayers);
     	gameBoard.addRobotJewel(JEWEL_TWO_POSITION, JEWEL_TWO_COLOUR);
     }
     if (numPlayers >= 3)
@@ -277,6 +286,8 @@ public class GameBoardModel
 	  
 	  
   }
+  
+  //checking if this robot turtle is on a jewel and is finished.
   public void checkIfWon(RobotTurtle rt)
   {
 	  int x = rt.getXPos();
@@ -340,7 +351,7 @@ public class GameBoardModel
 	  gameBoard.addCrate(x, y);
   }
   
-  public ArrayList<RobotTurtle> getListOfRobotTurtles()
+  public static ArrayList<RobotTurtle> getListOfRobotTurtles()
   {
 	  return listOfTurtles;
   }
@@ -364,4 +375,6 @@ public class GameBoardModel
  {
 	 return gameBoard.getTileList();
  }
+  
+}
 
