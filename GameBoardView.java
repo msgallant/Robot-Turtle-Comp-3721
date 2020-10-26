@@ -3,12 +3,10 @@ import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
@@ -261,11 +259,153 @@ public class GameBoardView extends JFrame
 		frame.setVisible(true); 
 	}
 
-	public void turtleMove(int olddir, int newdir, int oldx, int oldy, int newx, int newy)
+
+	public void displayBoard(Tile[][] tileList2) 
 	{
-		if(olddir==newdir)
+		GameBoardView updated = new GameBoardView("Robot Turtles");
+		int a=1;
+		for(int i =0; i<8; i++)
 		{
-			
+			for(int j=0;j<8;j++)
+			{
+				String type = new String();
+				//types can be : Crate, Normal, Stone Wall, Robot Jewel
+
+				Boolean occupied = new Boolean(false);
+				//True or False
+
+				type = tileList2[i][j].getTileType();
+				occupied = tileList2[i][j].getOccupied();
+				
+				if(occupied == true)
+				{
+					RobotTurtle rt = tileList2[i][j].getRobotTurtle();
+					if(type == "Normal")
+					{
+						if(rt.getColour == "Blue")
+						{
+							int d = rt.getDirection();
+							T[i][j].setIcon(new ImageIcon("src/Images/robotTurtle1." + d + ".jpg"));
+							updated.add(T[i][j]);
+							a++;
+						}
+						if(rt.getColour == "Green")
+						{
+							int d = rt.getDirection();
+							T[i][j].setIcon(new ImageIcon("src/Images/robotTurtle2." + d + ".jpg"));
+							updated.add(T[i][j]);
+							a++;
+						}
+						if(rt.getColour == "Purple")
+						{
+							int d = rt.getDirection();
+							T[i][j].setIcon(new ImageIcon("src/Images/robotTurtle3." + d + ".jpg"));
+							updated.add(T[i][j]);
+							a++;
+						}
+						if(rt.getColour == "Red")
+						{
+							int d = rt.getDirection();
+							T[i][j].setIcon(new ImageIcon("src/Images/robotTurtle4." + d + ".jpg"));
+							updated.add(T[i][j]);
+							a++;
+						}
+						
+					}// If Normal
+					
+					if(type == "Robot Jewel")
+					{
+						if(rt.getColour == "Blue")
+						{
+							int d = rt.getDirection();
+							T[i][j].setIcon(new ImageIcon("src/Images/robotTurtle1." + d + ".jpg"));
+							updated.add(T[i][j]);
+							a++;
+						}
+						if(rt.getColour == "Green")
+						{
+							int d = rt.getDirection();
+							T[i][j].setIcon(new ImageIcon("src/Images/robotTurtle2." + d + ".jpg"));
+							updated.add(T[i][j]);
+							a++;
+						}
+						if(rt.getColour == "Purple")
+						{
+							int d = rt.getDirection();
+							T[i][j].setIcon(new ImageIcon("src/Images/robotTurtle3." + d + ".jpg"));
+							updated.add(T[i][j]);
+							a++;
+						}
+						if(rt.getColour == "Red")
+						{
+							int d = rt.getDirection();
+							T[i][j].setIcon(new ImageIcon("src/Images/robotTurtle4." + d + ".jpg"));
+							updated.add(T[i][j]);
+							a++;
+						}	
+					}// If Robot Jewel
+					
+				}// If of Occupied
+
+				else
+				{
+					if(type == "Crate")
+					{
+						T[i][j].setIcon(new ImageIcon("src/Images/crate.jpg"));
+						updated.add(T[i][j]);
+						a++;
+					}// If for Crate
+					
+					if(type == "Normal")
+					{
+						T[i][j].setIcon(new ImageIcon("src/Images/GameBoard" + a +".jpg"));
+						updated.add(T[i][j]);
+						a++;
+					}// If for Normal
+					
+					if(type == "Stone Wall")
+					{
+						T[i][j].setIcon(new ImageIcon("src/Images/stoneWall.jpg"));
+						updated.add(T[i][j]);
+						a++;
+					}// If for Stone Wall
+					
+					if(type == "Robot Jewel")
+					{
+						String colour = new String();
+						//Blue(3,4), Green(3,3), Purple(4,3), Red(4,4)
+						colour = tileList2[i][j].getJewelColour();
+						if(colour == "Blue")
+						{
+							T[i][j].setIcon(new ImageIcon("src/Images/Jewel1.jpg"));
+							updated.add(T[i][j]);
+							a++;
+						}
+						if(colour == "Green")
+						{	
+							T[i][j].setIcon(new ImageIcon("src/Images/Jewel2.jpg"));
+							updated.add(T[i][j]);
+							a++;
+						}
+						if(colour == "Purple")
+						{
+							T[i][j].setIcon(new ImageIcon("src/Images/Jewel3.jpg"));
+							updated.add(T[i][j]);
+							a++;
+						}
+						if(colour == "Red")
+						{
+							T[i][j].setIcon(new ImageIcon("src/Images/Jewel3.jpg"));
+							updated.add(T[i][j]);
+							a++;
+						}
+					}// If for RObot Jewel
+				}// Else of occupied
+
+			}
 		}
+		updated.setVisible(true);
 	}
+
+
 }
