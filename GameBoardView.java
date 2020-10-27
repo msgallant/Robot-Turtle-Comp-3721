@@ -40,6 +40,7 @@ public class GameBoardView extends JFrame
 		}
 		setVisible(true);
 	}
+	
 
 	public void numPlayers()
 	{
@@ -61,15 +62,23 @@ public class GameBoardView extends JFrame
 			b.setHorizontalTextPosition(SwingConstants.CENTER);
 			b.setVerticalTextPosition(SwingConstants.BOTTOM);
 			b.setText(i +" Player");
+			b.addMouseListener(new MouseAdapter()
+			{
+				public void mouseClicked(MouseEvent arg0) 
+				{
+					frame.dispose();
+				}
+			});
 			panel2.add(b);
 		}
 		panel.add(panel1);  
 		panel.add(panel2);
 		frame.add(panel);  
-		frame.setSize(650, 280);  
+		frame.setSize(650,300);  
 		frame.setLocationRelativeTo(null);  
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
-		frame.setVisible(true); 
+		frame.setVisible(true);
+
 	}
 
 	public ArrayList<JButton> getButtonList()
@@ -187,7 +196,7 @@ public class GameBoardView extends JFrame
 		{
 			public void mouseClicked(MouseEvent arg0) 
 			{
-				
+
 			}
 		});	
 		bug.addMouseListener(new MouseAdapter()
@@ -254,11 +263,11 @@ public class GameBoardView extends JFrame
 
 	public void displayBoard(Tile[][] tileList2) 
 	{
-		GameBoardView updated = new GameBoardView("Robot Turtles");
+		//GameBoardView updated = new GameBoardView("Rob0ot Turtles");
 		int a=1;
-		for(int i =0; i<8; i++)
+		for(int i =0; i<7; i++)
 		{
-			for(int j=0;j<8;j++)
+			for(int j=0;j<7;j++)
 			{
 				String type = new String();
 				//types can be : Crate, Normal, Stone Wall, Robot Jewel
@@ -268,75 +277,69 @@ public class GameBoardView extends JFrame
 
 				type = tileList2[i][j].getTileType();
 				occupied = tileList2[i][j].getOccupied();
-				
+
 				if(occupied == true)
 				{
 					RobotTurtle rt = tileList2[i][j].getRobotTurtle();
 					if(type == "Normal")
 					{
-						if(rt.getColour == "Blue")
+						if(rt.getColour() == "Blue")
 						{
 							int d = rt.getDirection();
 							T[i][j].setIcon(new ImageIcon("src/Images/robotTurtle1." + d + ".jpg"));
-							updated.add(T[i][j]);
-							a++;
+							//a++;
 						}
-						if(rt.getColour == "Green")
+						if(rt.getColour() == "Green")
 						{
 							int d = rt.getDirection();
 							T[i][j].setIcon(new ImageIcon("src/Images/robotTurtle2." + d + ".jpg"));
-							updated.add(T[i][j]);
-							a++;
+							//a++;
 						}
-						if(rt.getColour == "Purple")
+						if(rt.getColour() == "Purple")
 						{
 							int d = rt.getDirection();
 							T[i][j].setIcon(new ImageIcon("src/Images/robotTurtle3." + d + ".jpg"));
-							updated.add(T[i][j]);
-							a++;
+							//a++;
 						}
-						if(rt.getColour == "Red")
+						if(rt.getColour() == "Red")
 						{
 							int d = rt.getDirection();
 							T[i][j].setIcon(new ImageIcon("src/Images/robotTurtle4." + d + ".jpg"));
-							updated.add(T[i][j]);
-							a++;
+
 						}
-						
+						//a++;
+
 					}// If Normal
-					
+
 					if(type == "Robot Jewel")
 					{
-						if(rt.getColour == "Blue")
+						if(rt.getColour() == "Blue")
 						{
 							int d = rt.getDirection();
 							T[i][j].setIcon(new ImageIcon("src/Images/robotTurtle1." + d + ".jpg"));
-							updated.add(T[i][j]);
-							a++;
+							//a++;
 						}
-						if(rt.getColour == "Green")
+						if(rt.getColour() == "Green")
 						{
 							int d = rt.getDirection();
 							T[i][j].setIcon(new ImageIcon("src/Images/robotTurtle2." + d + ".jpg"));
-							updated.add(T[i][j]);
-							a++;
+							//a++;
 						}
-						if(rt.getColour == "Purple")
+						if(rt.getColour() == "Purple")
 						{
 							int d = rt.getDirection();
 							T[i][j].setIcon(new ImageIcon("src/Images/robotTurtle3." + d + ".jpg"));
-							updated.add(T[i][j]);
-							a++;
+							//a++;
 						}
-						if(rt.getColour == "Red")
+						if(rt.getColour() == "Red")
 						{
 							int d = rt.getDirection();
 							T[i][j].setIcon(new ImageIcon("src/Images/robotTurtle4." + d + ".jpg"));
-							updated.add(T[i][j]);
-							a++;
+							//a++;
 						}	
+						//a++;
 					}// If Robot Jewel
-					
+
 				}// If of Occupied
 
 				else
@@ -344,59 +347,55 @@ public class GameBoardView extends JFrame
 					if(type == "Crate")
 					{
 						T[i][j].setIcon(new ImageIcon("src/Images/crate.jpg"));
-						updated.add(T[i][j]);
-						a++;
+						//a++;
 					}// If for Crate
-					
+
 					if(type == "Normal")
 					{
 						T[i][j].setIcon(new ImageIcon("src/Images/GameBoard" + a +".jpg"));
-						updated.add(T[i][j]);
-						a++;
+						//a++;
 					}// If for Normal
-					
+
 					if(type == "Stone Wall")
 					{
 						T[i][j].setIcon(new ImageIcon("src/Images/stoneWall.jpg"));
-						updated.add(T[i][j]);
-						a++;
+						//a++;
 					}// If for Stone Wall
-					
+
 					if(type == "Robot Jewel")
 					{
 						String colour = new String();
 						//Blue(3,4), Green(3,3), Purple(4,3), Red(4,4)
-						colour = tileList2[i][j].getJewelColour();
+						colour = tileList2[i][j].getColour();
 						if(colour == "Blue")
 						{
 							T[i][j].setIcon(new ImageIcon("src/Images/Jewel1.jpg"));
-							updated.add(T[i][j]);
-							a++;
+							//a++;
 						}
 						if(colour == "Green")
 						{	
 							T[i][j].setIcon(new ImageIcon("src/Images/Jewel2.jpg"));
-							updated.add(T[i][j]);
-							a++;
+							//a++;
 						}
 						if(colour == "Purple")
 						{
 							T[i][j].setIcon(new ImageIcon("src/Images/Jewel3.jpg"));
-							updated.add(T[i][j]);
-							a++;
+							//a++;
 						}
 						if(colour == "Red")
 						{
 							T[i][j].setIcon(new ImageIcon("src/Images/Jewel3.jpg"));
-							updated.add(T[i][j]);
-							a++;
+							//a++;
 						}
-					}// If for RObot Jewel
-				}// Else of occupied
 
+					}// If for RObot Jewel
+					//a++;
+				}// Else of occupied
+				a++;
 			}
+			a++;
 		}
-		updated.setVisible(true);
+		this.setVisible(true);
 	}
 
 

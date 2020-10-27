@@ -87,6 +87,7 @@ public class Tile
 	{
 		sMovable = b;
 	}
+	
 	public void setXPos(int x)
 	{
 		xPos = x;
@@ -111,10 +112,6 @@ public class Tile
 	{
 		tileType = t;
 	}
-	public RobotTurtle getRobotTurtle()
-	{
-		return rt;
-	}
 	public int getXPos()
 	{
 		return xPos;
@@ -122,6 +119,10 @@ public class Tile
 	public int getYPos()
 	{
 		return yPos;
+	}
+	public RobotTurtle getRobotTurtle()
+	{
+		return rt;
 	}
 	public boolean getOccupied()
 	{
@@ -135,7 +136,10 @@ public class Tile
 	{
 		return tileType;
 	}
-	
+	public String getColour()
+	{
+		return colour;
+	}
 	
 	public Tile getNTile()
 	{
@@ -152,10 +156,6 @@ public class Tile
 	public Tile getSTile()
 	{
 		return sTile;
-	}
-	public String getColour()
-	{
-		return colour;
 	}
 	
 	public boolean getNMovable()
@@ -176,3 +176,4 @@ public class Tile
 	}
 	
 }
+

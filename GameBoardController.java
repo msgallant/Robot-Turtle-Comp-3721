@@ -22,7 +22,7 @@ public class GameBoardController
 	private Scanner in;
 	private ArrayList<JButton> buttonList;
 	private ArrayList<JButton> tileList;
-	private int numberPlayers;
+	private int numberPlayers=0;
 	private int mouseClickWall=0;
 	private int mouseClickCrate=0;
 	private int tileNumber;
@@ -34,7 +34,7 @@ public class GameBoardController
 	public GameBoardController()
 	{
 		in = new Scanner(System.in);
-		//model = new GameBoardModel(numberPlayers);
+		model = new GameBoardModel(numberPlayers);
 		view = new GameBoardView("Robot Turtles");
 
 	}
@@ -49,11 +49,14 @@ public class GameBoardController
 		oneP = buttonList.get(0);
 		oneP.addMouseListener(new MouseAdapter()
 		{
+			
 			public void mouseClicked(MouseEvent arg0) 
 			{
 				numberPlayers = 1;
 				model = new GameBoardModel(numberPlayers);
+				//in.nextInt();
 				view.displayBoard(model.getTileList());
+				setUpGame();
 			}
 		});
 		twoP = buttonList.get(1);
@@ -62,8 +65,11 @@ public class GameBoardController
 			public void mouseClicked(MouseEvent arg0) 
 			{
 				numberPlayers = 2;
+				//model.initPlayers(numberPlayers);
 				model = new GameBoardModel(numberPlayers);
+				//in.nextInt();
 				view.displayBoard(model.getTileList());
+				setUpGame();
 			}
 		});
 		threeP = buttonList.get(2);
@@ -73,7 +79,9 @@ public class GameBoardController
 			{
 				numberPlayers = 3;
 				model = new GameBoardModel(numberPlayers);
+				//in.nextInt();
 				view.displayBoard(model.getTileList());
+				setUpGame();
 			}
 		});
 		fourP = buttonList.get(3);
@@ -83,13 +91,19 @@ public class GameBoardController
 			{
 				numberPlayers = 4;
 				model = new GameBoardModel(numberPlayers);
+				//in.nextInt();
 				view.displayBoard(model.getTileList());
+				setUpGame();
 			}
 		});	
 		in.nextInt();
-		//model = new GameBoardModel(numberPlayers);
-		//view.displayBoard(model.getTileList());
+		view.displayBoard(model.getTileList());
 		
+		
+		
+		//model = new GameBoardModel(numberPlayers);
+		
+		System.out.println(numberPlayers);	
 	}
 
 	private void setUpGame() 
@@ -112,7 +126,7 @@ public class GameBoardController
 						{
 							if(mouseClickWall<19)
 							{
-								model.addStoneWall((tileList.get(tileNumber)).getX(), (tileList.get(tileNumber)).getY());
+								model.addStoneWall(((tileList.get(tileNumber)).getX()), ((tileList.get(tileNumber)).getY()));
 								mouseClickWall++;
 							}
 							else if(mouseClickCrate<7)
@@ -191,6 +205,7 @@ public class GameBoardController
 	public void playGame()
 	{
 		initGame();
+		in.next();
 		setUpGame();
 		State currentState = model.getCurrentState();
 		do 
@@ -210,7 +225,6 @@ public class GameBoardController
 		RT.playGame();
 	}
 }
-
 
 
 

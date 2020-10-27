@@ -1,6 +1,6 @@
 public class GameBoard
 {
-	private Tile[][] tileList;
+	public static Tile[][] tileList;
 	private int GAME_BOARD_DIMENSION = 8;
 	public GameBoard()
 	{
