@@ -114,8 +114,10 @@ public class GameBoardDisplay extends JFrame
 	public void drawJewel(int x, int y, String colour)
 	{
 		//colours = {"Blue", "Green", "Purple", "Red"};
+		System.out.println(colour);
 		if (colour == colours[0])
 		{
+			System.out.println("hi");
 			Icon i=new ImageIcon("src/imgs/jewel1.JPG"); //blue
 			T[x][y].setIcon(i);
 			
@@ -178,6 +180,7 @@ public class GameBoardDisplay extends JFrame
 			{
 				if (t[col][row].getOccupied() != true) //tileTypes = {"Robot Jewel", "Stone Wall", "Crate"};
 				{
+
 					if (t[col][row].getTileType() == tileTypes[0]) //robot jewel
 					{
 						drawJewel(col, row, t[col][row].getColour());

@@ -11,7 +11,7 @@ public class GBController
 	private JButton oneP, twoP, threeP, fourP;
 	private GameBoardModel model;
 	private GameBoardDisplay view;
-	private int mouseClickStoneWall, mouseClickCrate;
+	private int mouseClickStoneWall = 0, mouseClickCrate =0;
 	private JButton[][] tileButtons;
 	boolean validPos = true;
 	int[] invalidXPos = {0, 0, 7, 7, 3, 3, 4, 4};
@@ -101,36 +101,37 @@ public class GBController
 				}
 				if (validPos)
 				{
-					if(mouseClickStoneWall<19)
+					if(mouseClickStoneWall<20)
 					{
-						System.out.println("hi" + "c: " + col + " r " + row);
-						model.addStoneWall(col, row);
 						mouseClickStoneWall++;
+						model.addStoneWall(col, row);
 						view.drawCurrentGame(model.getTileList());
 						System.out.println(model.getTileList()[col][row].getTileType());
 					}
-					else if(mouseClickCrate<7)
+					else if(mouseClickCrate<8)
 					{
-						view.drawCurrentGame(model.getTileList());
-						model.addCrate(col, row);
 						mouseClickCrate++;
+						model.addCrate(col, row);
+						view.drawCurrentGame(model.getTileList());
+						System.out.println(model.getTileList()[col][row].getTileType());
+						
 					}
 				}
-				else
+				/*else
 				{
 					//view.invalidSelection();
+				}*/
+				if (mouseClickStoneWall == 20 && mouseClickCrate == 8)
+				{
+					System.out.println("start game!");
+					startGame();
 				}
 			}
 		});
-		System.out.println("redraw");
-		
-		printTileList();
 		
 		
-		if (mouseClickStoneWall == 20 && mouseClickCrate == 7)
-		{
-			startGame();
-		}
+		
+		
 	}
 	public void printTileList()
 	{

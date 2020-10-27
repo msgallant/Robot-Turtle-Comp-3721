@@ -1,9 +1,3 @@
-/*Comp 3721 - Object-Oriented Design and Methodology
-* Milestone 3
-* Due October 27th, 2020
-* Marcia Gallant and Loryn Losier
-*/
-//for direction 1 represents north, 2 represents east, 3 represents south, 4 represents west
 public class RobotTurtle 
 {
   private int yPos, xPos, direction; 
@@ -96,11 +90,13 @@ public class RobotTurtle
 	  {
 		  direction = 1;
 	  }
+	  System.out.println("shift right");
   }
   
   //corects direction value
   public void directionShiftLeft()
   {
+	  System.out.println("shift left");
 	  if (direction == 1)
 	  {
 		  direction = 4;

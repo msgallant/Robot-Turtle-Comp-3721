@@ -6,8 +6,8 @@ public class RobotJewel extends Tile
   public RobotJewel(int x, int y, String c)
   {
 	super(x, y);
-    colour = c;
-    this.setTileType("Jewel");
+    this.setColour(c);
+    this.setTileType("Robot Jewel");
   }
   public String getJewelColour()
   {
