@@ -15,6 +15,14 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 
+/* 
+ * COMP 3721 - Object Oriented Design and Methodology
+ * Term Project - Milestone 3
+ * Code Version 3
+ * Marcia Gallant & Loryn Losier
+ * October 30th, 2020
+ */
+
 public class GameBoardController
 {
 	private int numberPlayers;
@@ -32,8 +40,8 @@ public class GameBoardController
 	boolean validatedCard = false;
 	int[] invalidXPos = {0, 0, 7, 7, 3, 3, 4, 4};
 	int[] invalidYPos = {0, 7, 0, 7, 4, 3, 3, 4};
-	private int maxStoneWalls = 1;
-	private int maxCrates = 1;
+	private int maxStoneWalls = 20;
+	private int maxCrates = 8;
 	private boolean gameStarted = false;
 	private GameBoardConverter converter;
 
@@ -260,7 +268,7 @@ public class GameBoardController
 			System.out.println("turns played: " + turnsPlayed);
 			System.out.println("");*/
 		}
-		else if(currentPlayer == Player.PLAYER_TWO)
+		if(currentPlayer == Player.PLAYER_TWO)
 		{
 			//System.out.println("PLAYER 2 turn!");
 			//System.out.println(model.getListOfRobotTurtles().get(1).getColour() + " " + c[cardChoiceIndex].getCardType());
@@ -347,7 +355,7 @@ public class GameBoardController
 			{
 				for (int j =0; j < 8; j++)
 				{
-					System.out.println(model.getTileList()[j][i].getTileType() + " " + model.getTileList()[j][i].getOccupied() + " " + i + " " + j);
+					System.out.println(model.getTileList()[i][j].getTileType() + " " + model.getTileList()[j][i].getOccupied() + " " + i + " " + j);
 				}
 				
 			}
