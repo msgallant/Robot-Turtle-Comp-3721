@@ -453,6 +453,6 @@ public class GameBoardDisplay extends JFrame
 	}
 	public void closeGame()
 	{
-		f.dispose(); //main frame exit
+		dispose(); //main frame exit
 	}
 }
