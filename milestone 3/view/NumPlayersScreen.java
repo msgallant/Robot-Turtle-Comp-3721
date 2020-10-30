@@ -11,6 +11,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+/* 
+ * COMP 3721 - Object Oriented Design and Methodology
+ * Term Project - Milestone 3
+ * Code Version 3
+ * Marcia Gallant & Loryn Losier
+ * October 30th, 2020
+ */
+
 public class NumPlayersScreen extends JFrame
 {
 	ArrayList<JButton> buttonList = new ArrayList<JButton>();
@@ -35,7 +43,7 @@ public class NumPlayersScreen extends JFrame
 		{
 			JButton b = new JButton();
 			buttonList.add(b);
-			b.setIcon(new ImageIcon("src/Images/" + i + "Player.jpg"));
+			b.setIcon(new ImageIcon("src/imgs/" + i + "Player.jpg"));
 			b.setHorizontalTextPosition(SwingConstants.CENTER);
 			b.setVerticalTextPosition(SwingConstants.BOTTOM);
 			b.setText(i +" Player");

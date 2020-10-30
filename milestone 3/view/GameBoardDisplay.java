@@ -1,8 +1,6 @@
 package view;
 import controller.GameBoardController;
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.awt.Panel;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -19,6 +17,15 @@ import javax.swing.SwingConstants;
 import java.awt.*;
 
 import controller.GameBoardConverter;
+
+/* 
+ * COMP 3721 - Object Oriented Design and Methodology
+ * Term Project - Milestone 3
+ * Code Version 3
+ * Marcia Gallant & Loryn Losier
+ * October 30th, 2020
+ */
+
 @SuppressWarnings("serial")
 public class GameBoardDisplay extends JFrame
 {
@@ -29,29 +36,46 @@ public class GameBoardDisplay extends JFrame
 	private String[] tilePossibilities = {"Robot Jewel", "Stone Wall", "Crate", "Robot Turtle"};
 	private JButton confirm = new JButton();
 	private Frame f = new Frame(); 
-	private JLabel playersTurnLabel;
+	private JLabel playersTurnLabel, space;
+	private JPanel p1;
+	private JPanel p2;
+	private JPanel p3;
+	private JPanel p4;
+	private String act;
+	private String dir;
 	
 	public GameBoardDisplay(String title)
 	{
-		//super(title); 
-		Panel p1 = new Panel();//creating a panel consisting of 2 panels: p2 and p3
-		Panel p2 = new Panel(); //consists of gameboard
-		Panel p3 = new Panel(); //consists of cards
+		super(title); 
+		setSize(600,800);
+		
+		p1 = new JPanel(); //creating a panel consisting of 2 panels: p2 and p3
+		p1.setPreferredSize(new Dimension(600, 800));// hardCoded sizing
+		p1.setMaximumSize(new Dimension(600, 800));  // hardCoded sizing
+		p1.setMinimumSize(new Dimension(600, 800));  // hardCoded sizing
+		p2 = new JPanel(); //consists of gameboard
+		p2.setPreferredSize(new Dimension(500, 500));// hardCoded sizing
+		p2.setMaximumSize(new Dimension(500, 500));  // hardCoded sizing
+		p2.setMinimumSize(new Dimension(500, 500));  // hardCoded sizing
+		p3 = new JPanel(); //consists of cards
+		p3.setPreferredSize(new Dimension(500, 150));// hardCoded sizing
+		p3.setMaximumSize(new Dimension(500, 150));  // hardCoded sizing
+		p3.setMinimumSize(new Dimension(500, 150));  // hardCoded sizing
+		p4 = new JPanel(); //consists of players turn
+		p4.setPreferredSize(new Dimension(500, 150));// hardCoded sizing
+		p4.setMaximumSize(new Dimension(500, 150));  // hardCoded sizing
+		p4.setMinimumSize(new Dimension(500, 150));  // hardCoded sizing
+		BoxLayout Box = new BoxLayout(p1, BoxLayout.Y_AXIS);
+		p1.setLayout(Box);
+		//Panel p1 = new Panel();//creating a panel consisting of 2 panels: p2 and p3
+		//Panel p2 = new Panel(); //consists of gameboard
+		//Panel p3 = new Panel(); //consists of cards
 		//Panel p4 = new Panel(); //consists of label informing users whose turn it is
-		p1.setSize(600, 600);
-		p1.setLayout(new GridLayout(2, 1, 1, 1));
+		//p1.setSize(600, 600);
+		//p1.setLayout(new GridLayout(2, 1, 1, 1));
 		
-		p2.setSize(600,600);
+		//p2.setSize(600,600);
 		p2.setLayout(new GridLayout(8, 8, 1, 1));
-		p3.setSize(100, 100);
-		
-		p3.setLayout(new GridBagLayout());
-		
-		playersTurnLabel = new JLabel();
-		playersTurnLabel.setText(" It is Player 1's turn");
-		
-		f.setSize(1000, 1000);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);   
 		
 		int a=1;
 		for(int row=0; row<8; row++) //setings up a blank gameboard
@@ -59,47 +83,73 @@ public class GameBoardDisplay extends JFrame
 			for( int col=0; col<8; col++) 
 			{	
 				T[col][row] = new JButton();
-				T[col][row].setIcon(new ImageIcon("src/imgs/GameBoard1.JPG"));
+				T[col][row].setIcon(new ImageIcon("src/imgs/GameBoard"+ a +".JPG"));
 				a++;
 				p2.add(T[col][row]);
 			}
 		}
 		
-		GridBagConstraints c = new GridBagConstraints();
+		p3.setLayout(new GridLayout(1, 5, 10, 1));
+		int j=0;
 		for (int i=0; i<4; i++)
 		{
+			if(j==0) 
+			{
+				act = new String("Turn ");
+				dir = new String("Left");
+			}
+			if(j==1)
+			{
+				act = new String("Move ");
+				dir = new String("Forward");
+			}
+			if(j==2) 
+			{
+				act = new String("Turn ");
+				dir = new String("Right");
+			}
+			if(j==3)
+			{
+				act = new String("BUG!!!");
+				dir = new String("");
+			}
+			j++;
 			cardButtons[i] = new JButton();
-			c.weightx = 2;
-			c.fill = GridBagConstraints.HORIZONTAL;
-			c.gridx = i;
-			c.gridy =0;
-			p3.add(cardButtons[i], c);
+			cardButtons[i].setText(act + dir);
+			cardButtons[i].setVerticalTextPosition(SwingConstants.BOTTOM);
+			cardButtons[i].setHorizontalTextPosition(SwingConstants.CENTER);
+			p3.add(cardButtons[i]);
 		}
-		confirm.setText("Confirm");
+		//p4.setLayout(new BorderLayout());
+		playersTurnLabel = new JLabel();
+		playersTurnLabel.setText(" It is Player 1's turn");
+		space = new JLabel();
+		space.setText("                              ");
+		//playersTurnLabel.setHorizontalTextPosition(SwingConstants.WEST);
+		confirm.setText("Confirm Move");
+		confirm.setPreferredSize(new Dimension(150,30));
+		confirm.setMaximumSize(new Dimension(150,30));
+		confirm.setMinimumSize(new Dimension(150,30));
+		confirm.setHorizontalTextPosition(SwingConstants.CENTER);
 		disableConfirmButton();
-		p3.add(confirm);
-		c.weightx = 2;
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.gridx = 0;
-		c.gridy =1;
-		p3.add(playersTurnLabel, c); //add label
+		setDefaultCloseOperation(EXIT_ON_CLOSE);   
+		p4.add(playersTurnLabel);
+		p4.add(space);
+		p4.add(confirm);
+		
 		p1.add(p2);
 		p1.add(p3);
-		f.add(p1);
+		p1.add(p4);
+		this.add(p1);
+
 		
-		/*drawTurtle(0,3, 1, "Blue");
-		drawTurtle(2,6, 2, "Blue");
-		drawJewel(4,4, "Blue");
-		drawCrate(7,4);
-		drawStoneWall(2,3);*/
 		drawCard(cardTypes[0]);
 		drawCard(cardTypes[1]);
 		drawCard(cardTypes[2]);
 		drawCard(cardTypes[3]);
 		setVisible(true);
-		f.show();
-		
 	}
+	
 	public void changePlayersTurnIndicatorLabel(int i) //i is whose turn it is
 	{
 		playersTurnLabel.setText("It is Player " + i + "'s turn.");
@@ -148,9 +198,10 @@ public class GameBoardDisplay extends JFrame
 		cardButtons[i].setEnabled(true);
 	}
 	
-	public void drawNormalTile(int x, int y)
+	public void drawNormalTile(int x, int y, int a)
 	{
-		Icon i=new ImageIcon("src/imgs/GameBoard1.JPG");
+		int b = a;
+		Icon i = new ImageIcon("src/imgs/GameBoard" + b + ".JPG");
 		T[x][y].setIcon(i);
 	}
 	
@@ -245,9 +296,10 @@ public class GameBoardDisplay extends JFrame
 	public void drawCurrentGame(GameBoardConverter gbc)
 	{
 		String[][] t = gbc.convertTiles();
-		for (int col = 0; col < 8; col++)
+		int a =1;
+		for (int row = 0; row < 8; row++)
 		{
-			for (int row =0; row < 8; row++)
+			for (int col  =0; col < 8; col++)
 			{
 
 
@@ -255,28 +307,31 @@ public class GameBoardDisplay extends JFrame
 				{
 					String colour = gbc.getColourOfTile(col, row);
 					System.out.println(colour);
+					a++;
 					drawJewel(col, row, colour);
 				}
 				else if (t[col][row] == tilePossibilities[1]) //stone wall
 				{
+					a++;
 					drawStoneWall(col, row);
 				}
 				else if (t[col][row] == tilePossibilities[2]) //crate
 				{
+					a++;
 					drawCrate(col, row);
 				}
 				else if (t[col][row] == tilePossibilities[3]) //robot turtle
 				{
 					int direction = gbc.getDirectionOfRobotTurtle(col, row);
 					String colour = gbc.getColourOfRobotTurtle(col, row);
+					a++;
 					drawTurtle(col,row,direction, colour);
 				}
 				else //there's no object or turtle on this tile, so draw a normal tile
 				{
-					drawNormalTile(col, row); 
+					drawNormalTile(col, row, a);
+					a++;
 				}
-				
-				
 			}
 		}
 	}
@@ -310,6 +365,7 @@ public class GameBoardDisplay extends JFrame
 			}
 		});
 	}
+	
 	public void invalidSelection() //pop-up when player tries to put a crate, stonewall, etc in an invalid tile
 	{
 		JFrame frame = new JFrame("Robot Turtles ***ERROR***");
