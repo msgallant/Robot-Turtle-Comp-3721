@@ -1,5 +1,16 @@
 package model;
 import java.util.ArrayList;
+
+/* 
+ * COMP 3721 - Object Oriented Design and Methodology
+ * Term Project - Milestone 3
+ * Code Version 3
+ * Marcia Gallant & Loryn Losier
+ * October 30th, 2020
+ */
+
+
+
 //Marcia Gallant, this initializes the game, puts jewels and turtles on it itself, asks foruser to put stone walls and crates, keeps track of whose 
 //turn and keeps track of who finishes the game and when the game is completely finished.
 public class GameBoardModel
@@ -7,30 +18,30 @@ public class GameBoardModel
   private static int numPlayers = 1; //default
   private static int numCards = 4;
   private int GAME_BOARD_DIMENSION = 8;
-  private static int[] JEWEL_ONE_POSITION = {3, 3};
-  private static int[] JEWEL_TWO_POSITION = {4, 4};
-  private static int[] JEWEL_THREE_POSITION = {4, 3};
-  private static int[] JEWEL_FOUR_POSITION = {3, 4};
+  private static int[] JEWEL_ONE_POSITION = {4, 3};
+  private static int[] JEWEL_TWO_POSITION = {3, 3};
+  private static int[] JEWEL_THREE_POSITION = {3, 4};
+  private static int[] JEWEL_FOUR_POSITION = {4, 4};
   
   private static String JEWEL_ONE_COLOUR = "Blue";
-  private static String JEWEL_TWO_COLOUR = "Red";
+  private static String JEWEL_TWO_COLOUR = "Green";
   private static String JEWEL_THREE_COLOUR = "Purple";
-  private static String JEWEL_FOUR_COLOUR = "Green";
+  private static String JEWEL_FOUR_COLOUR = "Red";
    
-  private static int[] TURTLE_ONE_POSITION = {0,0,3};
-  private static int[] TURTLE_TWO_POSITION = {7,7,1};
-  private static int[] TURTLE_THREE_POSITION = {7,0,4};
-  private static int[] TURTLE_FOUR_POSITION = {0,7,2};
+  private static int[] TURTLE_ONE_POSITION = {7,0,4};
+  private static int[] TURTLE_TWO_POSITION = {0,0,3};
+  private static int[] TURTLE_THREE_POSITION = {0,7,2};
+  private static int[] TURTLE_FOUR_POSITION = {7,7,1};
   
   private static String TURTLE_ONE_NAME = "Beep";
-  private static String TURTLE_TWO_NAME = "Pi";
+  private static String TURTLE_TWO_NAME = "Pangle";
   private static String TURTLE_THREE_NAME = "Dot";
-  private static String TURTLE_FOUR_NAME = "Pangle";
+  private static String TURTLE_FOUR_NAME = "Pi";
   
   private static String TURTLE_ONE_COLOUR = "Blue";
-  private static String TURTLE_TWO_COLOUR = "Red";
+  private static String TURTLE_TWO_COLOUR = "Green";
   private static String TURTLE_THREE_COLOUR = "Purple";
-  private static String TURTLE_FOUR_COLOUR = "Green";
+  private static String TURTLE_FOUR_COLOUR = "Red";
 
   private static ArrayList<RobotTurtle> listOfTurtles = new ArrayList<RobotTurtle>();
   private static RobotTurtle[] RTList = {null, null, null, null};

@@ -1,5 +1,13 @@
 package model;
-//Marcia Gallant
+
+/* 
+ * COMP 3721 - Object Oriented Design and Methodology
+ * Term Project - Milestone 3
+ * Code Version 3
+ * Marcia Gallant & Loryn Losier
+ * October 30th, 2020
+ */
+
 //This class adds stone walls, crates, jewels and turtles to the game board and updates turtles position when they move.
 public class GameBoard
 {
@@ -44,8 +52,8 @@ public class GameBoard
 		{
 			for (int col =0; col < GAME_BOARD_DIMENSION; col++)
 			{
-				Tile t = new Tile(col, row);
-				tileList[col][row] = t;
+				Tile t = new Tile(row, col);
+				tileList[row][col] = t;
 			}
 			
 		}
