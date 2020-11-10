@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import model_gameboard.GameBoard;
 import model_tiles.Tile;
 import model_turtle.RobotTurtle;
-public class GameBoardModel
+public class GameBoardModel implements ModelDataInterface
 {
   private static int numPlayers = 1; //default
   private static int numCards = 4;
