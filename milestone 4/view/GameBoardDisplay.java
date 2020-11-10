@@ -23,7 +23,7 @@ import controller.GameBoardConverter;
  */
 
 @SuppressWarnings("serial")
-public class GameBoardDisplay extends JFrame
+public class GameBoardDisplay extends JFrame implements DisplayInterface
 {
 	JButton[][] T = new JButton[8][8];
 	JButton[] cardButtons = new JButton[4];
