@@ -1,6 +1,6 @@
 package model_tiles;
 
-public class CratePositionCalculator {
+public class CratePositionCalculator implements CratePositionCalculatorInterface {
 	public CratePositionCalculator()
 	{
 		
