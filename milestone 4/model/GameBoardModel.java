@@ -37,8 +37,8 @@ public class GameBoardModel implements ModelDataInterface
   private static Card[] cardDeck = new Card[numCards];
   
   private static GameBoard gameBoard;
-  private int MAX_NUM_STONEWALLS = 2;
-  private int MAX_NUM_CRATES = 2;
+  private int MAX_NUM_STONEWALLS = 20;
+  private int MAX_NUM_CRATES = 8;
   private static Player currentPlayer;
   private State currentState;
   private static boolean[] playersPlaying = {false, false, false, false}; 
