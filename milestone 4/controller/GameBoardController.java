@@ -66,7 +66,7 @@ public class GameBoardController
 	protected void giveViewGameInformation() //pass the view what colours, card types and 
 	//what objects like robot turtle, jewel, stone walls, crates can be on a tile
 	{
-		view.setGameInformation(model.getColours(), model.getCardTypes(), model.getTilePosibilities());
+		view.setGameInformation(model.getCardTypes());
 	}
 	protected void displayCurrentGameBoard()
 	{
@@ -79,7 +79,7 @@ public class GameBoardController
 		//System.out.println(numberPlayers);
 		model = new GameBoardModel(numberPlayers);
 		view = new GameBoardDisplay("Robot Turtles");
-		view.setGameInformation(model.getColours(), model.getCardTypes(), model.getTilePosibilities());
+		view.setGameInformation(model.getCardTypes());
 		view.drawCards();
 		
 		//get positions user cant put crates and stone walls
