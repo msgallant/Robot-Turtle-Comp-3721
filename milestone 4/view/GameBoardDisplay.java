@@ -1,10 +1,6 @@
 package view;
-import controller.GameBoardController;
-
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
-
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -31,11 +27,8 @@ public class GameBoardDisplay extends JFrame
 {
 	JButton[][] T = new JButton[8][8];
 	JButton[] cardButtons = new JButton[4];
-	private String[] colours;// = {"Blue", "Green", "Purple", "Red"};
 	private String[] cardTypes; // = {"Turn Left", "Step Forward", "Turn Right", "Bug"};
-	private String[] tilePossibilities; // = {"Robot Jewel", "Stone Wall", "Crate", "Robot Turtle"};
 	private JButton confirm = new JButton();
-	private Frame f = new Frame(); 
 	private JLabel playersTurnLabel, space;
 	private JPanel p1;
 	private JPanel p2;
@@ -48,8 +41,10 @@ public class GameBoardDisplay extends JFrame
 	{
 		super(title); 
 		setSize(600,800);
+		setBackground(Color.BLACK);
 		
 		p1 = new JPanel(); //creating a panel consisting of 2 panels: p2 and p3
+		p1.setBackground(Color.BLACK);
 		p1.setPreferredSize(new Dimension(600, 800));// hardCoded sizing
 		p1.setMaximumSize(new Dimension(600, 800));  // hardCoded sizing
 		p1.setMinimumSize(new Dimension(600, 800));  // hardCoded sizing
@@ -58,20 +53,18 @@ public class GameBoardDisplay extends JFrame
 		p2.setMaximumSize(new Dimension(500, 500));  // hardCoded sizing
 		p2.setMinimumSize(new Dimension(500, 500));  // hardCoded sizing
 		p3 = new JPanel(); //consists of cards
+		p3.setBackground(Color.BLACK);
 		p3.setPreferredSize(new Dimension(500, 150));// hardCoded sizing
 		p3.setMaximumSize(new Dimension(500, 150));  // hardCoded sizing
 		p3.setMinimumSize(new Dimension(500, 150));  // hardCoded sizing
 		p4 = new JPanel(); //consists of players turn
+		p4.setBackground(Color.BLACK);
 		p4.setPreferredSize(new Dimension(500, 150));// hardCoded sizing
 		p4.setMaximumSize(new Dimension(500, 150));  // hardCoded sizing
 		p4.setMinimumSize(new Dimension(500, 150));  // hardCoded sizing
 		BoxLayout Box = new BoxLayout(p1, BoxLayout.Y_AXIS);
 		p1.setLayout(Box);
-		//Panel p1 = new Panel();//creating a panel consisting of 2 panels: p2 and p3
-		//Panel p2 = new Panel(); //consists of gameboard
-		//Panel p3 = new Panel(); //consists of cards
-		//Panel p4 = new Panel(); //consists of label informing users whose turn it is
-		//p1.setSize(600, 600);
+		
 
 		p2.setLayout(new GridLayout(8, 8, 1, 1));
 		
@@ -120,7 +113,8 @@ public class GameBoardDisplay extends JFrame
 		}
 		//p4.setLayout(new BorderLayout());
 		playersTurnLabel = new JLabel();
-		playersTurnLabel.setText(" It is Player 1's turn");
+		playersTurnLabel.setForeground(Color.WHITE);
+		playersTurnLabel.setText("Let's set up the Game!!");
 		space = new JLabel();
 		space.setText("                              ");
 		//playersTurnLabel.setHorizontalTextPosition(SwingConstants.WEST);
@@ -147,9 +141,7 @@ public class GameBoardDisplay extends JFrame
 		//what types of objects/tiles it may need to draw
 	public void setGameInformation(String[] c, String[] ct, String[] tp)
 	{
-		colours = c;
 		cardTypes = ct;
-		tilePossibilities = tp;
 	}
 	public void drawCards()
 	{
@@ -163,7 +155,27 @@ public class GameBoardDisplay extends JFrame
 	}
 	public void changePlayersTurnIndicatorLabel(int i) //i is whose turn it is
 	{
-		playersTurnLabel.setText("It is Player " + i + "'s turn.");
+		if(i == 1)
+		{
+			playersTurnLabel.setForeground(Color.BLUE);
+			playersTurnLabel.setText("It is Player " + i + "'s turn.");
+		}
+		if(i == 2)
+		{
+			playersTurnLabel.setForeground(Color.GREEN);
+			playersTurnLabel.setText("It is Player " + i + "'s turn.");
+		}
+		if(i == 3)
+		{
+			playersTurnLabel.setForeground(Color.MAGENTA);
+			playersTurnLabel.setText("It is Player " + i + "'s turn.");
+		}
+		if(i == 4)
+		{
+			playersTurnLabel.setForeground(Color.RED);
+			playersTurnLabel.setText("It is Player " + i + "'s turn.");
+		}
+		//playersTurnLabel.setText("It is Player " + i + "'s turn.");
 	}
 	public JButton getConfirmButton()
 	{
@@ -272,7 +284,7 @@ public class GameBoardDisplay extends JFrame
 		panel.add(ok);
 		frame.add(panel);  
 		frame.setSize(500, 150);  
-		frame.setLocationRelativeTo(null);  
+		frame.setLocation(50,535); 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
 		frame.setVisible(true); 
 		ok.addMouseListener(new MouseAdapter()
@@ -291,6 +303,7 @@ public class GameBoardDisplay extends JFrame
 		JTextArea textArea = new JTextArea();
 		textArea.setEditable(false);
 		textArea.setBackground(null);
+		textArea.setForeground(Color.WHITE);
 		textArea.setText("Invalid tile.\n" 
 				+ "***Please be aware that the tiles with a turtle or "
 				+ "a jewel are invalid selections: \n");
@@ -299,9 +312,10 @@ public class GameBoardDisplay extends JFrame
 		JButton ok = new JButton();
 		ok.setText("OK");
 		panel.add(ok);
+		panel.setBackground(Color.RED);
 		frame.add(panel);  
 		frame.setSize(500, 150);  
-		frame.setLocationRelativeTo(null);  
+		frame.setLocation(50,200);  
 		//frame.setDefaultCloseOperation(JFrame.EXIT);  
 		frame.setVisible(true); 
 		ok.addMouseListener(new MouseAdapter()

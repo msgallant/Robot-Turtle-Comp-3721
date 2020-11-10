@@ -1,7 +1,6 @@
 package model_gameboard;
 
 import model_tiles.Crate;
-import model_tiles.CratePositionCalculator;
 import model_tiles.RobotJewel;
 import model_tiles.StoneWall;
 import model_tiles.Tile;

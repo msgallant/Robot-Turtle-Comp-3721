@@ -165,6 +165,7 @@ public class GameBoardController
 						{
 							gameStarted = true; //these mouse listeners are useless now
 							System.out.println("game starting!");
+							view.changePlayersTurnIndicatorLabel(1);
 							startGame();
 						}
 					}

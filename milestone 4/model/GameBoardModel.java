@@ -7,39 +7,14 @@ import java.util.ArrayList;
 //It also has the moveTurtle method which moves the given robot turtle depending on what card it is also given
 //it updates the robot turtle x,y coordinates and gameboard accordingly if the turtle was able to move.
 
-import model_gameboard.CratePositionUpdater;
 import model_gameboard.GameBoard;
-import model_gameboard.GameBoardMoveChecker;
-import model_gameboard.RobotTurtlePositionUpdater;
-import model_tiles.CratePositionCalculator;
 import model_tiles.Tile;
 import model_turtle.RobotTurtle;
-import model_turtle.RobotTurtlePositionCalculator;
 public class GameBoardModel
 {
   private static int numPlayers = 1; //default
   private static int numCards = 4;
   private int GAME_BOARD_DIMENSION = 8;
-  private static int[] JEWEL_ONE_POSITION = {3, 3};
-  private static int[] JEWEL_TWO_POSITION = {4, 4};
-  private static int[] JEWEL_THREE_POSITION = {4, 3};
-  private static int[] JEWEL_FOUR_POSITION = {3, 4};
-  
-  private static String JEWEL_ONE_COLOUR = "Blue";
-  private static String JEWEL_TWO_COLOUR = "Green";
-  private static String JEWEL_THREE_COLOUR = "Purple";
-  private static String JEWEL_FOUR_COLOUR = "Red"; 
-  
-  private static int[] TURTLE_ONE_POSITION = {0,0,3};
-  private static int[] TURTLE_TWO_POSITION = {7,7,1};
-  private static int[] TURTLE_THREE_POSITION = {7,0,4};
-  private static int[] TURTLE_FOUR_POSITION = {0,7,2};
-  
-  private static String TURTLE_ONE_NAME = "Beep";
-  private static String TURTLE_TWO_NAME = "Pangle";
-  private static String TURTLE_THREE_NAME = "Dot";
-  private static String TURTLE_FOUR_NAME = "Pi";
-  
   private static String TURTLE_ONE_COLOUR = "Blue";
   private static String TURTLE_TWO_COLOUR = "Green";
   private static String TURTLE_THREE_COLOUR = "Purple";
@@ -49,8 +24,6 @@ public class GameBoardModel
   private String[] colours = {TURTLE_ONE_COLOUR, TURTLE_TWO_COLOUR, TURTLE_THREE_COLOUR, TURTLE_FOUR_COLOUR};
   
   private static String[] cardTypes = {"Turn Left", "Step Forward", "Turn Right", "Bug"};
-  private static String[] cardColours = {"Yellow", "Blue", "Purple", "Brown"};
-  
   //things the view class might have to draw. Order cannot be changed.
   private static String[] tilePossibilities = {"Robot Jewel", "Stone Wall", "Crate", "Robot Turtle"};
   
@@ -73,8 +46,8 @@ public class GameBoardModel
   public GameBoardModel(int players)
   {
     numPlayers = players;
-    currentState = currentState.PLAYING;
-    currentPlayer = currentPlayer.PLAYER_ONE;
+    currentState = State.PLAYING;
+    currentPlayer = Player.PLAYER_ONE;
     gameBoard = new GameBoard(GAME_BOARD_DIMENSION);
     initPlayers(); //initializing all players
     initGame(); //initializing board game
@@ -190,8 +163,8 @@ public class GameBoardModel
   protected static void switchPlayer()
   {
 	  
-	  PlayerSwitcher ps = new PlayerSwitcher(currentPlayer, numPlayers, playersPlaying);
-	  currentPlayer = ps.switchPlayer();
+	  new PlayerSwitcher(currentPlayer, numPlayers, playersPlaying);
+	  currentPlayer = PlayerSwitcher.switchPlayer();
   }
   
   protected static void createCardDeck()
@@ -202,8 +175,8 @@ public class GameBoardModel
   }
   protected static void createRobotJewels()
   {
-    RobotJewelCreator jewelCreator = new RobotJewelCreator(numPlayers, gameBoard);
-    jewelCreator.createRobotJewels();
+    new RobotJewelCreator(numPlayers, gameBoard);
+    RobotJewelCreator.createRobotJewels();
     
   }
   
