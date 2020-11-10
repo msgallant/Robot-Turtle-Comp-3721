@@ -36,7 +36,7 @@ public class NumPlayersScreen extends JFrame
 		{
 			JButton b = new JButton();
 			buttonList.add(b);
-			b.setIcon(new ImageIcon("src/Images/" + i + "Player.jpg"));
+			b.setIcon(new ImageIcon("imgs/" + i + "Player.jpg"));
 			b.setHorizontalTextPosition(SwingConstants.CENTER);
 			b.setVerticalTextPosition(SwingConstants.BOTTOM);
 			b.setText(i +" Player");
