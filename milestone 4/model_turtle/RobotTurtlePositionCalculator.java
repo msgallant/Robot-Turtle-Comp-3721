@@ -2,7 +2,7 @@ package model_turtle;
 
 //Marcia Gallant
 //this class has the responsibility of finding out what the next position or direction is for the turtle
-public class RobotTurtlePositionCalculator implements DirectionCalculator, PositionCalculator
+public class RobotTurtlePositionCalculator implements RobotTurtlePositionCalculatorInterface
 {
 	private int xPos, yPos, direction;
 	
