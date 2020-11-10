@@ -139,7 +139,7 @@ public class GameBoardDisplay extends JFrame implements DisplayInterface
 	}
 	//gives this class information about what colours it may need draw, what cards it needs to draw,
 		//what types of objects/tiles it may need to draw
-	public void setGameInformation(String[] c, String[] ct, String[] tp)
+	public void setGameInformation(String[] ct)
 	{
 		cardTypes = ct;
 	}
