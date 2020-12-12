@@ -98,7 +98,7 @@ public class GameBoardController
 		maxIceWalls = model.getMaxIceWalls();
 		maxPortals = model.getMaxPortals();
 		
-		view.addObsticles();
+		view.addObsticles(maxStoneWalls,maxCrates,maxIceWalls,maxPortals);
 		displayCurrentGameBoard();
 		
 		
