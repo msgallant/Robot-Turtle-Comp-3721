@@ -26,7 +26,7 @@ public interface DisplayInterface {
 	public void enableCardButton(int i);
 	public void closeGame();
 	
-	public void addObsticles();
+	public void addObsticles(int s,int c,int i,int p);
 	
 	public void Instructions();
 	public void userProgram(GameBoardConverter gbc);

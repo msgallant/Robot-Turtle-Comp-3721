@@ -23,6 +23,7 @@ import controller.GameBoardConverter;
  * October 30th, 2020
  */
 
+
 @SuppressWarnings("serial")
 public class GameBoardDisplay extends JFrame implements DisplayInterface
 {
@@ -44,23 +45,23 @@ public class GameBoardDisplay extends JFrame implements DisplayInterface
 	public GameBoardDisplay(String title)
 	{
 		super(title); 
-		setSize(900,900);
+		setSize(800,900);
 		setBackground(Color.BLACK);
 		
 		p1 = new JPanel(); //creating a panel consisting of 2 panels: p2 and p3
 		p1.setBackground(Color.BLACK);
-		p1.setPreferredSize(new Dimension(1000, 1000));// hardCoded sizing
-		p1.setMaximumSize(new Dimension(1000, 1000));  // hardCoded sizing
-		p1.setMinimumSize(new Dimension(1000, 1000));  // hardCoded sizing
+		p1.setPreferredSize(new Dimension(750, 1000));// hardCoded sizing
+		p1.setMaximumSize(new Dimension(750, 1000));  // hardCoded sizing
+		p1.setMinimumSize(new Dimension(750, 1000));  // hardCoded sizing
 		p2 = new JPanel(); //consists of gameboard
 		p2.setPreferredSize(new Dimension(500, 500));// hardCoded sizing
 		p2.setMaximumSize(new Dimension(500, 500));  // hardCoded sizing
 		p2.setMinimumSize(new Dimension(500, 500));  // hardCoded sizing
 		p3 = new JPanel(); //consists of cards
 		p3.setBackground(Color.BLACK);
-		p3.setPreferredSize(new Dimension(500, 150));// hardCoded sizing
-		p3.setMaximumSize(new Dimension(500, 150));  // hardCoded sizing
-		p3.setMinimumSize(new Dimension(500, 150));  // hardCoded sizing
+		p3.setPreferredSize(new Dimension(750, 150));// hardCoded sizing
+		p3.setMaximumSize(new Dimension(750, 150));  // hardCoded sizing
+		p3.setMinimumSize(new Dimension(750, 150));  // hardCoded sizing
 		p4 = new JPanel(); //consists of players turn
 		p4.setBackground(Color.BLACK);
 		p4.setPreferredSize(new Dimension(500, 150));// hardCoded sizing
@@ -316,24 +317,27 @@ public class GameBoardDisplay extends JFrame implements DisplayInterface
 		}
 	}
 
-	public void addObsticles() //pop-up tell user to add crates and stone walls
+	public void addObsticles(int stoneWalls, int crates, int iceWalls, int Portals ) //pop-up tell user to add crates and stone walls
 	{
-		JFrame frame = new JFrame("Robot Turtles");
+		JFrame frame = new JFrame("Robot Turtles Game Board Set Up!");
 		JPanel panel = new JPanel();  
 		JTextArea textArea = new JTextArea();
 		textArea.setEditable(false);
 		textArea.setBackground(null);
-		textArea.setText("Select up to 20 tiles to be replaced with stone walls.\n"
-				+ "And up to 8 to be replaced with crates.\n"
-				+ "***Please be aware that the tiles with a turtle or a jewel are invalid selections: \n");
-		textArea.setCaretPosition(SwingConstants.NORTH);
+		textArea.setText("Please Select:\n"
+				+ stoneWalls +" tiles to be replaced with Stone Walls.\n"
+				+ crates+" tiles to be replaced with Crates.\n"
+				+ iceWalls+" tiles to be replaced with Ice Walls.\n"
+				+ Portals+" tiles to be replaced with Portals.\n"
+				+ "\n***Please be aware that the tiles with a Turtle or a Jewel are invalid selections: \n");
+		textArea.setCaretPosition(SwingConstants.CENTER);
 		panel.add(textArea);
 		JButton ok = new JButton();
 		ok.setText("OK");
 		panel.add(ok);
 		frame.add(panel);  
-		frame.setSize(500, 150);  
-		frame.setLocation(50,535); 
+		frame.setSize(500, 220);  
+		frame.setLocation(150,535); 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
 		frame.setVisible(true); 
 		ok.addMouseListener(new MouseAdapter()
@@ -364,7 +368,7 @@ public class GameBoardDisplay extends JFrame implements DisplayInterface
 		panel.setBackground(Color.RED);
 		frame.add(panel);  
 		frame.setSize(500, 150);  
-		frame.setLocation(50,200);  
+		frame.setLocation(150,200);  
 		//frame.setDefaultCloseOperation(JFrame.EXIT);  
 		frame.setVisible(true); 
 		ok.addMouseListener(new MouseAdapter()
@@ -434,25 +438,27 @@ public class GameBoardDisplay extends JFrame implements DisplayInterface
 	}
 	public void Instructions() //pop-up when you begin the game
 	{
-		JFrame frame = new JFrame("Robot Turtles");
+		JFrame frame = new JFrame("How to Play Robot Turtles");
 		JPanel panel = new JPanel();  
 		JTextArea textArea = new JTextArea();
 		textArea.setEditable(false);
 		textArea.setBackground(null);
-		textArea.setText("Press set up program and then begin selecting cards and confirming\n" 
-				+ "them to write your program. \n"
-				+ "Press set up function frog and then begin selecting cards and confirming \n"
-				+ "them to write your function frog program. \n"
-				+"You can set up your program, then switch to function frog and then back to your\n"
-				+ "program and vice versa but the cards you confirm are unchangable for the turn.");
+		textArea.setText("\nTo plan a program:\n   Press 'set up program' and then begin selecting cards, confirming after each card.\n" 
+				+ "   ***If ever you think you made a mistake, you can always press the bug card***\n"
+				+ "\nTo start a function frog:\n   Press 'set up function frog' and then begin selecting cards and confirming \n"
+				+ "\nRemeber: You can add a function frog into a program\n"
+				+ "\nOnce you've confirmed your cards they are set for your turn!\n"
+				+ "\nWhen you're ready, click 'Write Program' to run your code!\n"
+				+ "   If your code works your turtle will have found a jewel,\n   If not you'll have to click Bug to try again on your next turn!\n"
+				+ "\n                                                     Don't forget to have fun!!\n");
 		textArea.setCaretPosition(SwingConstants.NORTH);
 		panel.add(textArea);	
 		JButton ok = new JButton();
-		ok.setText("OK");
+		ok.setText("Let's Go!");
 		panel.add(ok);
 		frame.add(panel);  
-		frame.setSize(600, 200);  
-		frame.setLocationRelativeTo(null);  
+		frame.setSize(500, 400);  
+		frame.setLocation(150,100);  
 		//frame.setDefaultCloseOperation(JFrame.EXIT);  
 		frame.setVisible(true); 
 		ok.addMouseListener(new MouseAdapter()
