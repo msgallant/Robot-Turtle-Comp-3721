@@ -446,7 +446,7 @@ public class GameBoardDisplay extends JFrame implements DisplayInterface
 		textArea.setText("\nTo plan a program:\n   Press 'set up program' and then begin selecting cards, confirming after each card.\n" 
 				+ "   ***If ever you think you made a mistake, you can always press the bug card***\n"
 				+ "\nTo start a function frog:\n   Press 'set up function frog' and then begin selecting cards and confirming \n"
-				+ "\nRemeber: You can add a function frog into a program\n"
+				+ "\nRemember: You can add a function frog into a program\n"
 				+ "\nOnce you've confirmed your cards they are set for your turn!\n"
 				+ "\nWhen you're ready, click 'Write Program' to run your code!\n"
 				+ "   If your code works your turtle will have found a jewel,\n   If not you'll have to click Bug to try again on your next turn!\n"
