@@ -69,16 +69,25 @@ public class GameBoard
 	public ArrayList<RobotTurtle> getListOfRobotTurtles()
 	{
 		ArrayList<RobotTurtle> l = new ArrayList<RobotTurtle>();
-		for (int row =0; row < GAME_BOARD_DIMENSION; row++ )
+		String[] colours = {"Blue", "Green", "Purple", "Red"};
+		int index = 0;
+		for (int i = 0; i < colours.length; i++)
 		{
-			for (int col =0; col < GAME_BOARD_DIMENSION; col++)
+			for (int row =0; row < GAME_BOARD_DIMENSION; row++ )
 			{
-				if (tileList[col][row].getOccupied() == true)
+				for (int col =0; col < GAME_BOARD_DIMENSION; col++)
 				{
-					l.add(tileList[col][row].getRobotTurtle());
+					if (tileList[col][row].getOccupied() == true)
+					{
+						if (tileList[col][row].getRobotTurtle().getColour().equals(colours[index]))
+						{
+							l.add(tileList[col][row].getRobotTurtle());
+							index++;
+						}
+					}
 				}
-			}
 			
+			}
 		}
 		return l;
 	}
